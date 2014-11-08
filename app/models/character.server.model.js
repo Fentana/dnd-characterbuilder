@@ -16,6 +16,17 @@ var CharacterSchema = new Schema({
 		required: 'Please fill Character name',
 		trim: true
 	},
+    attributes: {
+        str: { type: Number },
+        dex: { type: Number },
+        con: { type: Number },
+        int: { type: Number },
+        wis: { type: Number },
+        cha: { type: Number }
+    },
+    race: {
+        type: String
+    },
 	created: {
 		type: Date,
 		default: Date.now
