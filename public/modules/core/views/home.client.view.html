@@ -1,22 +1,8 @@
 <section data-ng-controller="HomeController">
 	<div class="jumbotron text-center">
-		<div class="row">
-			<div class="col-md-8 col-md-offset-2 col-sm-6 col-sm-offset-3 col-xs-12">
-				<img alt="FullyArmoredAdventuringParty" class="img-responsive text-center" src="modules/core/img/brand/FullyArmoredAdventuringParty.jpg" />
-			</div>
-		</div>
-		<br>
-		<div class="row">
-			<p class="lead">
-            <h2>Congrats! You're ready to start an adventure.</h2>
-            <p>You can create your very own character based on your own personality.</p>
-			</p>
-		</div>
-		<div class="row">
-			<p>
-				<a class="btn btn-primary btn-lg" href="/#!/signin" target="_blank">Login To Begin</a>
-			</p>
-		</div>
+
+        <div ng-include="character_sum ? 'modules/core/views/partials/summary.client.part.html' : 'modules/core/views/partials/welcome.client.part.html'"></div>
+        <!--<div ng-include src="'modules/core/views/partials/welcome.client.part.html'"></div>-->
 	</div>
 
 	<div class="row">
@@ -24,7 +10,8 @@
 			<h2>
 				<strong>R</strong>ace
 			</h2>
-			<p><a target="_blank" href="http://mongodb.org/">MongoDB</a> is a database. MongoDB's <a target="_blank" href="http://docs.mongodb.org/manual/">great manual</a> is the place to get started with NoSQL and MongoDB.</p>
+			<p>People of varying size, shape, and color, dressed in a dazzling spectrum
+                of styles and hues—represent many <a href="/#!/all_races">different races</a>.</p>
 		</div>
 		<div class="col-md-3">
 			<h2>
@@ -49,6 +36,8 @@
 		<!--<h3>MyCharacterBuilder</h3>-->
 		<p>
 			You have the ability to create and play a single D&amp;D 5th Edition character, by taking a personality test.
+            I hope you enjoy this app. But this is only an assistant platform, there's no substitute for the Wizards of the Coast
+            books & a smart DM.
 		</p>
 	</div>
 </section>
