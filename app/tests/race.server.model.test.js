@@ -29,8 +29,8 @@ describe('Race Model Unit Tests:', function() {
 
 		user.save(function() { 
 			race = new Race({
-				// Add model fields
-				// ...
+				name: 'Race Name',
+				user: user
 			});
 
 			done();
@@ -41,6 +41,15 @@ describe('Race Model Unit Tests:', function() {
 		it('should be able to save without problems', function(done) {
 			return race.save(function(err) {
 				should.not.exist(err);
+				done();
+			});
+		});
+
+		it('should be able to show an error when try to save without name', function(done) { 
+			race.name = '';
+
+			return race.save(function(err) {
+				should.exist(err);
 				done();
 			});
 		});

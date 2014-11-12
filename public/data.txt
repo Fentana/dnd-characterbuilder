@@ -1,0 +1,14 @@
+http://www.jsoneditoronline.org/#
+
+Races:
+{"name":"Human","profile_image":"modules/races/img/Human.png","descriptors":["<strong>Exemplars of Ambition</strong> Humans who seek adventure are the most daring and ambitious members of a daring and ambitious race.","<strong>Variety in All Things</strong> Humans are the most adaptable and ambitious people\namong the common races."],"size":"M","age":"20-100yrs","speed":30,"languages":["Common","Any"],"enhancers":[{"STR":1,"DEX":1,"CON":1,"INT":1,"WIS":1,"CHA":1}]}
+
+
+high elf, wood elf, drow
+hill dwarf, mountain dwarf
+lightfoot halfling, stout halfling
+dragonborn
+forest gnome, rock gnome
+half elf, half orc
+tiefling
+

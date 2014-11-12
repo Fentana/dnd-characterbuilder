@@ -18,9 +18,30 @@ var RaceSchema = new Schema({
         type: String
     },
     descriptors: {
-        type:Array,
+        type: Array,
         default: []   // title & text per element
+    },
+    enhancers: {
+        type: Array,
+        default: []
+    },
+    speed: {
+        type: Number
+    },
+    size: {
+        type: String
+    },
+    age: {
+        type: String
+    },
+    languages: {
+        type: Array,
+        default: []
     }
+//    subRaces: {
+//                    should they be seperate or just noted in the "enhancers"
+//    }
+
 });
 
 mongoose.model('Race', RaceSchema);
