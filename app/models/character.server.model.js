@@ -16,6 +16,12 @@ var CharacterSchema = new Schema({
 		required: 'Please fill Character name',
 		trim: true
 	},
+    gender: {
+        type: String
+    },
+    alignment:{
+
+    },
     attributes: {
         str: { type: Number },
         dex: { type: Number },

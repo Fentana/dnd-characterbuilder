@@ -11,10 +11,6 @@ angular.module('core').config(['$stateProvider', '$urlRouterProvider',
             .state('home', {
                 url: '/',
                 templateUrl: 'modules/core/views/home.client.view.html'
-            })
-            .state('race_list', {
-                url: '/all_races',
-                templateUrl: 'modules/core/views/races.client.view.html'
             });
     }
 ]);

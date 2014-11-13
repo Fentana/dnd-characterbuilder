@@ -10,6 +10,16 @@ angular.module('core').service('Menus', [
 		// Define the menus object
 		this.menus = {};
 
+        //for menu items that only an admin should see
+        var isAdmin = function(user){
+            if( user.roles.indexOf('admin') === 1 ){
+                return true;
+            }
+            else{
+                return false;
+            }
+        };
+
 		// A private function for rendering decision 
 		var shouldRender = function(user) {
 			if (user) {
@@ -62,7 +72,8 @@ angular.module('core').service('Menus', [
 				isPublic: isPublic || false,
 				roles: roles || this.defaultRoles,
 				items: [],
-				shouldRender: shouldRender
+                shouldRender: shouldRender,
+                isAdmin: isAdmin
 			};
 
 			// Return the menu object
@@ -94,8 +105,9 @@ angular.module('core').service('Menus', [
 				roles: ((roles === null || typeof roles === 'undefined') ? this.menus[menuId].roles : roles),
 				position: position || 0,
 				items: [],
-				shouldRender: shouldRender
-			});
+				shouldRender: shouldRender,
+                isAdmin: isAdmin
+            });
 
 			// Return the menu object
 			return this.menus[menuId];
@@ -117,8 +129,9 @@ angular.module('core').service('Menus', [
 						isPublic: ((isPublic === null || typeof isPublic === 'undefined') ? this.menus[menuId].items[itemIndex].isPublic : isPublic),
 						roles: ((roles === null || typeof roles === 'undefined') ? this.menus[menuId].items[itemIndex].roles : roles),
 						position: position || 0,
-						shouldRender: shouldRender
-					});
+						shouldRender: shouldRender,
+                        isAdmin: isAdmin
+                    });
 				}
 			}
 

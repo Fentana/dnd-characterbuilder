@@ -38,7 +38,11 @@
 					<span data-ng-bind="authentication.user.displayName"></span> <b class="caret"></b>
 				</a>
 				<ul class="dropdown-menu">
-					<li>
+                    <li data-ng-if="menu.isAdmin(authentication.user);">
+                        <a href="/#!/questions/create">Create Question</a>
+                    </li>
+
+                    <li>
 						<a href="/#!/settings/profile">Edit Account</a>
 					</li>
 					<!--<li>-->

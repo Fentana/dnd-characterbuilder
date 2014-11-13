@@ -1,0 +1,57 @@
+<section data-ng-controller="QuestionsController">
+    <div class="page-header">
+        <h1>Make a New Question</h1>
+    </div>
+    <div class="col-md-12">
+        <form class="form-horizontal" data-ng-submit="create()" novalidate>
+            <fieldset>
+                <div class="form-group">
+                    <label class="control-label" for="text">Question Text:</label>
+                    <div class="controls">
+                        <input type="text" data-ng-model="text" id="text" class="form-control" placeholder="What should I ask?" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="support_image">Path to Server Image:</label>
+                    <div class="controls">
+                        <input type="text" data-ng-model="support_image" id="support_image" class="form-control" placeholder="Image must already exist on server" required>
+                    </div>
+                </div>
+
+
+
+                <div class="form-group">
+                    <label class="control-label" for="answer_1">Answer #1:</label>
+                    <div class="controls">
+                        <input type="text" data-ng-model="answer_text_1" id="answer_1" class="form-control" placeholder="Text" required>
+                        <input type="text" data-ng-model="answer_impact_category_1" id="answer_ic_1" class="form-control" placeholder="Category" required>
+                        <input type="text" data-ng-model="answer_impact_value_1" id="answer_v_1" class="form-control" placeholder="Value" required>
+                        <input type="text" data-ng-model="answer_impact_weight_1" id="answer_wt_1" class="form-control" placeholder="Weight" required>
+                        <input type="text" data-ng-model="answer_leadsto_1" id="answer_lt_1" class="form-control" placeholder="Next Question Id" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label" for="answer_2">Answer #2:</label>
+                    <div class="controls">
+                        <input type="text" data-ng-model="answer_text_2" id="answer_2" class="form-control" placeholder="Text" required>
+                        <input type="text" data-ng-model="answer_impact_category_2" id="answer_ic_2" class="form-control" placeholder="Category" required>
+                        <input type="text" data-ng-model="answer_impact_value_2" id="answer_v_2" class="form-control" placeholder="Value" required>
+                        <input type="text" data-ng-model="answer_impact_weight_2" id="answer_wt_2" class="form-control" placeholder="Weight" required>
+                        <input type="text" data-ng-model="answer_leadsto_2" id="answer_lt_2" class="form-control" placeholder="Next Question Id" required>
+                    </div>
+                </div>
+
+
+
+
+                <div class="form-group">
+                    <input type="submit" class="btn btn-default">
+                </div>
+				<div data-ng-show="error" class="text-danger">
+					<strong data-ng-bind="error"></strong>
+				</div>
+            </fieldset>
+        </form>
+    </div>
+</section>

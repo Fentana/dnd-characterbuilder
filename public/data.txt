@@ -12,3 +12,7 @@ forest gnome, rock gnome
 half elf, half orc
 tiefling
 
+
+Questions:
+
+{"order":1,"text":"What gender are you?","answers":[{"text":"Boy","impacts":["gender=b+5"],"lead_to":ObjectId("54614a9269a02e3b6d0939bb")},{"text":"Girl","impacts":"gender=g+5","lead_to":ObjectId("54614a9269a02e3b6d0939bb")},],"support_image":""}

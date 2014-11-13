@@ -75,6 +75,11 @@ var UserSchema = new Schema({
 		}],
 		default: ['user']
 	},
+    onQuestion:{   //Where is this user at in the questionnaire?
+        type: Schema.ObjectId,
+        ref: 'Question',
+        default: null
+    },
 	updated: {
 		type: Date
 	},
