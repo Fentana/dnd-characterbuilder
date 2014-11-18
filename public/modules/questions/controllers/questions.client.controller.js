@@ -5,26 +5,52 @@ angular.module('questions').controller('QuestionsController', ['$scope', '$state
 	function($scope, $stateParams, $location, Authentication, Questions ) {
 		$scope.authentication = Authentication;
 
+        var initArray = [];
+        for (var i = 0; i < 4; i++) {
+            initArray.push( {text:'',lead_to:'',impacts:[]} );
+        }
+        $scope.answers = initArray;
+
+        $scope.update_impact = function(i, inn){
+            if (null === inn){
+                console.log(i);
+            }
+            if(inn.category && inn.value && inn.weight){
+                $scope.answers[i].impacts.push(  JSON.parse(JSON.stringify(inn))   );   // deep clone
+                inn.category ='';
+                inn.value ='';
+                inn.weight ='';
+            }
+        };
+
+
 		// Create new Question
 		$scope.create = function() {
-
-            console.log(this);
 
 			// Create new Question object
 			var question = new Questions ({
 				text: this.text,
-                support_image: this.support_image
+                support_image: this.support_image,
+                answers: this.answers
 			});
 
-			// Redirect after save
-		/*	question.$save(function(response) {
-				$location.path('questions/' + response._id);
+            /// add ability to remove empty ones
+            for(var i=0; i<question.answers.length; i++){
+                console.log(question.answers[i]);
+                if( question.answers[i].text === '' ){
+                    question.answers.splice(i,1);
+                    i--;
+                }
+            }
 
-				// Clear form fields
-				$scope.name = '';
+            // Redirect after save
+			question.$save(function(response) {
+                //console.log(response._id);
+                $location.path('questions/' + response._id);
+
 			}, function(errorResponse) {
 				$scope.error = errorResponse.data.message;
-			});*/
+			});
 		};
 
 		// Remove existing Question

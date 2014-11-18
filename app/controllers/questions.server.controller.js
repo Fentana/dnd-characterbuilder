@@ -13,10 +13,12 @@ var mongoose = require('mongoose'),
  */
 exports.create = function(req, res) {
 	var question = new Question(req.body);
-	question.user = req.user;
+	//question.user = req.user;
+    //console.log(question);
 
 	question.save(function(err) {
 		if (err) {
+            console.log(err);
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)
 			});

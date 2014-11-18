@@ -10,25 +10,31 @@ var mongoose = require('mongoose'),
  * Question Schema
  */
 var QuestionSchema = new Schema({
-	order: {
-        type: Number
-    },
+//	order: {
+//        type: Number
+//    },
     text: {
 		type: String,
 		default: ''
 	},
-    answers: {
-        type: Array
-       /*
-        test: {},
-        impacts: {
-            type: Array
-        },
-        lead_to: {
-            type: Schema.ObjectId,
-            ref: 'Question'
-        }*/
-    },
+    answers: [
+        {
+            text: { type: String },
+            impacts: [
+                {
+                    category: { type: String },
+                    value: { type: String },
+                    weight: { type: Number }
+                }
+            ],
+            lead_to: {
+                type: String,
+                //type: Schema.ObjectId,    ////Not able to take from form....mongoose casting issue
+                //ref: 'Question',
+                default: null
+            }
+        }
+    ],
     support_image: {
         type: String,
         default: null

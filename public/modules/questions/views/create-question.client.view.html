@@ -14,34 +14,42 @@
                 <div class="form-group">
                     <label class="control-label" for="support_image">Path to Server Image:</label>
                     <div class="controls">
-                        <input type="text" data-ng-model="support_image" id="support_image" class="form-control" placeholder="Image must already exist on server" required>
+                        <input type="text" data-ng-model="support_image" id="support_image" class="form-control" placeholder="Image must already exist on server" >
                     </div>
                 </div>
 
+
+                <div id='post' ng-repeat="ans in answers track by $index">
 
 
                 <div class="form-group">
-                    <label class="control-label" for="answer_1">Answer #1:</label>
+                    <label class="control-label" for="answer_{{$index}}">Answer #{{$index+1}}:</label>
                     <div class="controls">
-                        <input type="text" data-ng-model="answer_text_1" id="answer_1" class="form-control" placeholder="Text" required>
-                        <input type="text" data-ng-model="answer_impact_category_1" id="answer_ic_1" class="form-control" placeholder="Category" required>
-                        <input type="text" data-ng-model="answer_impact_value_1" id="answer_v_1" class="form-control" placeholder="Value" required>
-                        <input type="text" data-ng-model="answer_impact_weight_1" id="answer_wt_1" class="form-control" placeholder="Weight" required>
-                        <input type="text" data-ng-model="answer_leadsto_1" id="answer_lt_1" class="form-control" placeholder="Next Question Id" required>
+                        <input type="text" data-ng-model="ans.text" id="answer_{{$index}}" class="form-control" placeholder="Text" >
+                        <input type="text" data-ng-model="ans.leads_to" id="answer_lt_1" class="form-control" placeholder="Next Question Id" >
                     </div>
                 </div>
 
-                <div class="form-group">
-                    <label class="control-label" for="answer_2">Answer #2:</label>
-                    <div class="controls">
-                        <input type="text" data-ng-model="answer_text_2" id="answer_2" class="form-control" placeholder="Text" required>
-                        <input type="text" data-ng-model="answer_impact_category_2" id="answer_ic_2" class="form-control" placeholder="Category" required>
-                        <input type="text" data-ng-model="answer_impact_value_2" id="answer_v_2" class="form-control" placeholder="Value" required>
-                        <input type="text" data-ng-model="answer_impact_weight_2" id="answer_wt_2" class="form-control" placeholder="Weight" required>
-                        <input type="text" data-ng-model="answer_leadsto_2" id="answer_lt_2" class="form-control" placeholder="Next Question Id" required>
+
+                <div class="form-group form-inline" >
+                    <label class="control-label" for="imp_c_{{$index+1}}">Append an Impact to Answer #{{$index+1}}:</label>
+                    <div class="controls  col-md-offset-1">
+                        <input type="text" data-ng-model="imp.category" id="imp_c_{{$index+1}}" ng-blur="update_impact($index, imp)" class="form-control" placeholder="Category" >
+                        <input type="text" data-ng-model="imp.value" id="imp_v_{{$index+1}}" ng-blur="update_impact($index, imp)" class="form-control" placeholder="Value" >
+                        <input type="text" data-ng-model="imp.weight" id="imp_w_{{$index+1}}" ng-blur="update_impact($index, imp)" class="form-control" placeholder="Weight" >
                     </div>
+
+                    <div class="controls  col-md-offset-1" ng-repeat="makeImp in ans.impacts">
+                        <input type="text" class="form-control" value="{{makeImp.category}}" readonly>
+                        <input type="text" class="form-control" value="{{makeImp.value}}" readonly>
+                        <input type="text" class="form-control" value="{{makeImp.weight}}" readonly>
+                    </div>
+
+
                 </div>
 
+
+                </div>
 
 
 

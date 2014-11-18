@@ -1,21 +1,37 @@
 <section data-ng-controller="QuestionsController" data-ng-init="findOne()">
 	<div class="page-header">
-		<h1 data-ng-bind="question.name"></h1>
+        <h1 data-ng-bind="question.text"></h1>
+        <h3 data-ng-bind="question._id"></h3>
 	</div>
-	<div class="pull-right" data-ng-show="authentication.user._id == question.user._id">
+	<!--<div class="pull-right" data-ng-show="authentication.user._id == question.user._id">
 		<a class="btn btn-primary" href="/#!/questions/{{question._id}}/edit">
 			<i class="glyphicon glyphicon-edit"></i>
 		</a>
 		<a class="btn btn-primary" data-ng-click="remove();">
 			<i class="glyphicon glyphicon-trash"></i>
 		</a>
-	</div>
-	<small>
+	</div>-->
+
+    <div id='post' ng-repeat="ans in question.answers track by $index">
+         <h2>#{{$index+1}}: {{ans.text}}</h2>
+    <small class="">
 		<em class="text-muted">
-			Posted on
-			<span data-ng-bind="question.created | date:'mediumDate'"></span>
-			by
-			<span data-ng-bind="question.user.displayName"></span>
-		</em>
-	</small>
+			Links to: {{ans.leadTo}}
+        </em>
+    </small>
+
+        <table class="table table-striped col-md-offset-1" style="width: 500px">
+                <thead><tr><th>Category</th><th>Value</th><th>Weight</th></tr></thead>
+			<tbody ng-repeat="imp in ans.impacts">
+                <tr>
+                    <td>{{imp.category}}</td>
+                    <td>{{imp.value}}</td>
+                    <td>{{imp.weight}}</td>
+                </tr>
+            </tbody>
+            </table>
+
+    </div>
+
+
 </section>
