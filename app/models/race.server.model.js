@@ -10,6 +10,10 @@ var mongoose = require('mongoose'),
  * Race Schema  (includes expansions as sub races, but not required)
  */
 var RaceSchema = new Schema({
+    short: {
+        type: String,
+        default: ''
+    },
     name: {
         type: String,
         default: ''
@@ -22,8 +26,9 @@ var RaceSchema = new Schema({
         default: []   // title & text per element
     },
     enhancers: {
-        type: Array,
-        default: []
+        // mixed nested
+        //default: null
+        any: Schema.Types.Mixed
     },
     speed: {
         type: Number

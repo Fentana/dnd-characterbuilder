@@ -71,15 +71,24 @@ var UserSchema = new Schema({
 	roles: {
 		type: [{
 			type: String,
-			enum: ['user', 'admin']
+			enum: ['user', 'admin', 'dmaster']
 		}],
 		default: ['user']
 	},
-//    onQuestion:{   //Where is this user at in the questionnaire?
-//        type: Schema.ObjectId,
-//        ref: 'Question',
-//        default: null
-//    },
+    onQuestion: {   //Where is this user at in the questionnaire?
+        //type: Schema.ObjectId,
+        //ref: 'Question',
+        type: String,
+        default: '546d1e1a8ead44a170abb256'   // THIS IS THE STARTING QUESTION!!!
+        // Have a function in Questions, to update this attr, for all users.
+    },
+    myImpacts: [   //when you being taking the quiz, this will populate with all choices (merge? or just append?)
+        {
+            category: { type: String },
+            value: { type: String },
+            weight: { type: Number }
+        }
+    ],
 	updated: {
 		type: Date
 	},
@@ -100,7 +109,7 @@ var UserSchema = new Schema({
  * Hook a pre save method to hash the password
  */
 UserSchema.pre('save', function(next) {
-	if (this.password && this.password.length > 6) {
+	if (this.password && this.password.length > 4) {
 		this.salt = new Buffer(crypto.randomBytes(16).toString('base64'), 'base64');
 		this.password = this.hashPassword(this.password);
 	}

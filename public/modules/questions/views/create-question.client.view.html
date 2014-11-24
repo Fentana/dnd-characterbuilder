@@ -26,7 +26,7 @@
                     <label class="control-label" for="answer_{{$index}}">Answer #{{$index+1}}:</label>
                     <div class="controls">
                         <input type="text" data-ng-model="ans.text" id="answer_{{$index}}" class="form-control" placeholder="Text" >
-                        <input type="text" data-ng-model="ans.leads_to" id="answer_lt_1" class="form-control" placeholder="Next Question Id" >
+                        <input type="text" data-ng-model="ans.lead_to" id="answer_lt_1" class="form-control" placeholder="Next Question Id" >
                     </div>
                 </div>
 
@@ -34,9 +34,9 @@
                 <div class="form-group form-inline" >
                     <label class="control-label" for="imp_c_{{$index+1}}">Append an Impact to Answer #{{$index+1}}:</label>
                     <div class="controls  col-md-offset-1">
-                        <input type="text" data-ng-model="imp.category" id="imp_c_{{$index+1}}" ng-blur="update_impact($index, imp)" class="form-control" placeholder="Category" >
-                        <input type="text" data-ng-model="imp.value" id="imp_v_{{$index+1}}" ng-blur="update_impact($index, imp)" class="form-control" placeholder="Value" >
-                        <input type="text" data-ng-model="imp.weight" id="imp_w_{{$index+1}}" ng-blur="update_impact($index, imp)" class="form-control" placeholder="Weight" >
+                        <input type="text" data-ng-model="imp.category" id="imp_c_{{$index+1}}" ng-blur="update_impact(imp)" class="form-control" placeholder="Category" >
+                        <input type="text" data-ng-model="imp.value" id="imp_v_{{$index+1}}" ng-blur="update_impact(imp)" class="form-control" placeholder="Value" >
+                        <input type="text" data-ng-model="imp.weight" id="imp_w_{{$index+1}}" ng-blur="update_impact(imp)" class="form-control" placeholder="Weight" >
                     </div>
 
                     <div class="controls  col-md-offset-1" ng-repeat="makeImp in ans.impacts">

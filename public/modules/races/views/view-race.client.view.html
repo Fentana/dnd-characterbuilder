@@ -2,20 +2,47 @@
 	<div class="page-header">
 		<h1 data-ng-bind="race.name"></h1>
 	</div>
-	<div class="pull-right" data-ng-show="authentication.user._id == race.user._id">
-		<a class="btn btn-primary" href="/#!/races/{{race._id}}/edit">
-			<i class="glyphicon glyphicon-edit"></i>
-		</a>
-		<a class="btn btn-primary" data-ng-click="remove();">
-			<i class="glyphicon glyphicon-trash"></i>
-		</a>
-	</div>
-	<small>
-		<em class="text-muted">
-			Posted on
-			<span data-ng-bind="race.created | date:'mediumDate'"></span>
-			by
-			<span data-ng-bind="race.user.displayName"></span>
-		</em>
-	</small>
+
+    <div class="row">
+
+    <div class="col-md-3 col-sm-4  col-xs-3">
+        <img alt="thisQuestion Image" class="img-responsive text-center" src="{{race.profile_image}}" />
+        <small class="list-group-item-text col-md-offset-2 col-sm-offset-2">
+            <strong>Age:</strong>
+            <span data-ng-bind="race.age"></span>
+            <strong>Speed:</strong>
+            <span data-ng-bind="race.speed"></span>
+            <strong>Size:</strong>
+            <span data-ng-bind="race.size"></span>
+        </small>
+    </div>
+
+    <div class="col-md-3 col-sm-5  col-xs-3">
+
+        <table class="table table-striped col-md-offset-1" style="width: 500px">
+            <thead><tr><th>Category</th><th>Value</th></tr></thead>
+            <tbody ng-repeat="(_key_, _value_) in race.enhancers">
+            <tr>
+                <td>{{_key_}}</td>
+                <td>{{_value_}}</td>
+\            </tr>
+            </tbody>
+        </table>
+
+
+
+    </div>
+
+
+    </div>
+
+    <div class="row">
+        </br>
+        <div class="table table-striped col-md-offset-1" ng-repeat="desc in race.descriptors">
+                <p ng-bind-html="desc"></p>
+        </div>
+
+    </div>
+
+
 </section>

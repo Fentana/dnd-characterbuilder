@@ -40,7 +40,6 @@ exports.read = function(req, res) {
  */
 exports.update = function(req, res) {
 	var question = req.question ;
-
 	question = _.extend(question , req.body);
 
 	question.save(function(err) {
@@ -100,8 +99,13 @@ exports.questionByID = function(req, res, next, id) { Question.findById(id).popu
  * Question authorization middleware
  */
 exports.hasAuthorization = function(req, res, next) {
-	if (req.question.user.id !== req.user.id) {
-		return res.status(403).send('User is not authorized');
-	}
+	if( req.question.user != undefined ){
+        if (req.question.user.id !== req.user.id) {
+		    return res.status(403).send('User is not authorized');
+	    }
+    }
+    else {
+        console.log('This question has no user info!');
+    }
 	next();
 };

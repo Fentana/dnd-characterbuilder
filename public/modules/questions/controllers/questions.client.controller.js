@@ -11,15 +11,24 @@ angular.module('questions').controller('QuestionsController', ['$scope', '$state
         }
         $scope.answers = initArray;
 
-        $scope.update_impact = function(i, inn){
+        $scope.update_impact = function(inn){
             if (null === inn){
-                console.log(i);
+                console.log(this.ans);
             }
             if(inn.category && inn.value && inn.weight){
-                $scope.answers[i].impacts.push(  JSON.parse(JSON.stringify(inn))   );   // deep clone
+               this.ans.impacts.push(  JSON.parse(JSON.stringify(inn))   );   // deep clone
                 inn.category ='';
                 inn.value ='';
                 inn.weight ='';
+            }
+        };
+
+        $scope.remove_impact = function(i){
+            if (null === i){
+                console.log(i);
+            }
+            else {
+                this.ans.impacts.splice(i,1);
             }
         };
 
@@ -74,6 +83,7 @@ angular.module('questions').controller('QuestionsController', ['$scope', '$state
 			var question = $scope.question ;
 
 			question.$update(function() {
+
 				$location.path('questions/' + question._id);
 			}, function(errorResponse) {
 				$scope.error = errorResponse.data.message;
@@ -92,20 +102,28 @@ angular.module('questions').controller('QuestionsController', ['$scope', '$state
 			});
 		};
 
+
         // Find existing Question
- /*       $scope.enterQuiz = function() {
-            if(exists( $scope.authentication.user.onQuestion )){
-                $scope.question = Questions.get({
-                    questionId: $scope.authentication.user.onQuestion
-                });
-            }
-            else{
-                $scope.question = Questions.get({
-                    order: 1
-                });
-            }
+        $scope.findUserCurrent = function() {
+            $scope.question = Questions.get({
+                questionId: $scope.authentication.user.onQuestion
+            });
+        };
 
 
-        };*/
+
+        /// For revolving que in questionaire
+        $scope.choose = function(aid){
+            console.log(qid);
+            $scope.my_answer_index = aid;
+        };
+
+
+        $scope.myAnswers = function(){
+            console.log( $scope.question.answers[$scope.my_answer_index] );
+
+
+        };
+
 	}
 ]);

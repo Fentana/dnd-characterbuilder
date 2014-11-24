@@ -6,11 +6,55 @@
         <form class="form-horizontal" data-ng-submit="update()" novalidate>
             <fieldset>
                 <div class="form-group">
-                    <label class="control-label" for="name">Name</label>
+                    <label class="control-label" for="text">Question Text:</label>
                     <div class="controls">
-                        <input type="text" data-ng-model="question.name" id="name" class="form-control" placeholder="Name" required>
+                        <input type="text" data-ng-model="question.text" id="text" class="form-control" placeholder="What should I ask?" required>
                     </div>
                 </div>
+                <div class="form-group">
+                    <label class="control-label" for="support_image">Path to Server Image:</label>
+                    <div class="controls">
+                        <input type="text" data-ng-model="question.support_image" id="support_image" class="form-control" placeholder="Image must already exist on server" >
+                    </div>
+                </div>
+
+
+
+
+                <div id='post' ng-repeat="ans in question.answers track by $index">
+
+                    <div class="form-group">
+                        <label class="control-label" for="answer_{{$index}}">Answer #{{$index+1}}:</label>
+                        <div class="controls">
+                            <input type="text" data-ng-model="ans.text" id="answer_{{$index}}" class="form-control" placeholder="Text" >
+                            <input type="text" data-ng-model="ans.lead_to" id="answer_lt_1" class="form-control" placeholder="Next Question Id" >
+                        </div>
+                    </div>
+
+                    <div class="form-group form-inline" >
+                        <label class="control-label" for="imp_c_{{$index+1}}">Append an Impact to Answer #{{$index+1}}:</label>
+                        <div class="controls  col-md-offset-1">
+                            <input type="text" data-ng-model="imp.category" id="imp_c_{{$index+1}}" ng-blur="update_impact(imp)" class="form-control" placeholder="Category" >
+                            <input type="text" data-ng-model="imp.value" id="imp_v_{{$index+1}}" ng-blur="update_impact(imp)" class="form-control" placeholder="Value" >
+                            <input type="text" data-ng-model="imp.weight" id="imp_w_{{$index+1}}" ng-blur="update_impact(imp)" class="form-control" placeholder="Weight" >
+                        </div>
+
+                        <div class="controls  col-md-offset-1" ng-repeat="makeImp in ans.impacts track by $index">
+                            <input type="text" class="form-control" value="{{makeImp.category}}" readonly>
+                            <input type="text" class="form-control" value="{{makeImp.value}}" readonly>
+                            <input type="text" class="form-control" value="{{makeImp.weight}}" readonly>
+                            <a class="btn btn-danger btn-sm " data-ng-click="remove_impact($index)" >X</a>
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+
+
+
                 <div class="form-group">
                     <input type="submit" value="Update" class="btn btn-default">
                 </div>
