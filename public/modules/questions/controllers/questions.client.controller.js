@@ -1,9 +1,13 @@
 'use strict';
 
 // Questions controller
-angular.module('questions').controller('QuestionsController', ['$scope', '$stateParams', '$location', 'Authentication', 'Questions',
-	function($scope, $stateParams, $location, Authentication, Questions ) {
+angular.module('questions').controller('QuestionsController', ['$scope', '$stateParams', '$location', 'Users', 'Authentication', 'Questions',
+	function($scope, $stateParams, $location, Users, Authentication, Questions ) {
 		$scope.authentication = Authentication;
+
+        // If user is not signed in then redirect back home
+        //if (!$scope.authentication.user) $location.path('/signin');
+
 
         var initArray = [];
         for (var i = 0; i < 4; i++) {
@@ -114,13 +118,31 @@ angular.module('questions').controller('QuestionsController', ['$scope', '$state
 
         /// For revolving que in questionaire
         $scope.choose = function(aid){
-            console.log(qid);
             $scope.my_answer_index = aid;
         };
 
 
         $scope.myAnswers = function(){
-            console.log( $scope.question.answers[$scope.my_answer_index] );
+            var selected = $scope.question.answers[$scope.my_answer_index];
+            $scope.authentication.user.onQuestion =  selected.lead_to;
+
+            for(var e in selected.impacts){
+                $scope.authentication.user.chosen_impacts.push( selected.impacts[e] );
+            }
+
+            var user = new Users($scope.authentication.user);
+            console.log(user);
+
+            user.$update(function(response) {
+                //$scope.success = true;
+                Authentication.user = response;
+                console.log('sucess');
+                $location.path('questionnaire/');
+
+            }, function(response) {
+                console.log(response.data.message);
+                $scope.error = response.data.message;
+            });
 
 
         };

@@ -99,7 +99,7 @@ exports.questionByID = function(req, res, next, id) { Question.findById(id).popu
  * Question authorization middleware
  */
 exports.hasAuthorization = function(req, res, next) {
-	if( req.question.user != undefined ){
+	if( req.question.user !== undefined ){
         if (req.question.user.id !== req.user.id) {
 		    return res.status(403).send('User is not authorized');
 	    }

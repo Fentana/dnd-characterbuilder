@@ -20,7 +20,7 @@ var CharacterSchema = new Schema({
         type: String
     },
     alignment:{
-
+        type: String
     },
     attributes: {
         str: { type: Number },
@@ -36,10 +36,6 @@ var CharacterSchema = new Schema({
 	created: {
 		type: Date,
 		default: Date.now
-	},
-	user: {
-		type: Schema.ObjectId,
-		ref: 'User'
 	}
 });
 
