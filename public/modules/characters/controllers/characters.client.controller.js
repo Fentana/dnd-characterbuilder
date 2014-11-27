@@ -5,6 +5,19 @@ angular.module('characters').controller('CharactersController', ['$scope', '$sta
 	function($scope, $stateParams, $location, Authentication, Characters ) {
 		$scope.authentication = Authentication;
 
+        $scope.rolling = function(){
+            var attrIds=['str1','dex1','con1','int1','wis1','cha1'];
+            for(var e in attrIds){
+                document.getElementById(attrIds[e]).value=8+Math.floor( Math.random()*8 ) ;
+            }
+        };
+
+        $scope.preLoad = function(){
+            $scope.gender = bubbleUpOne('gender').toUpperCase();
+            $scope.attr = {s:8,d:8,c:8,i:8,w:8,h:8};
+            $scope.races = [];
+        };
+
 		// Create new Character
 		$scope.create = function() {
 			// Create new Character object
@@ -61,5 +74,19 @@ angular.module('characters').controller('CharactersController', ['$scope', '$sta
 				characterId: $stateParams.characterId
 			});
 		};
+
+
+        function bubbleUpOne(category){
+            var subset = $scope.authentication.user.chosen_impacts.filter(function(item) {
+                 if(item.category == category){return item};
+            });
+
+            if( subset.length === 1 ){
+                return subset[0].value
+            }
+            //// add code to return only top value for given category
+
+        };
+
 	}
 ]);

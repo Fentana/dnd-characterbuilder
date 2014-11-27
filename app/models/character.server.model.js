@@ -19,6 +19,9 @@ var CharacterSchema = new Schema({
     gender: {
         type: String
     },
+    lvl: {
+        type: Number
+    },
     alignment:{
         type: String
     },
@@ -31,7 +34,10 @@ var CharacterSchema = new Schema({
         cha: { type: Number }
     },
     race: {
-        type: String
+        type: String  //contains short from Races
+    },
+    job: {
+        type: String  //contains short from Jobs
     },
 	created: {
 		type: Date,

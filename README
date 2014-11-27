@@ -11,3 +11,9 @@ http://scotch.io/bar-talk/setting-up-a-mean-stack-single-page-application
 
 Mongoose:
 http://mongoosejs.com/docs/schematypes.html
+
+
+
+TODO:
+  1. have impacts merge upon each and every save
+  2. decide if character building should be 1-x mutliple choice forms, or 1 question at a time?

@@ -9,4 +9,4 @@ app/tests/coverage/
 .idea/
 
 
-/public/data.txt
+public/data.txt

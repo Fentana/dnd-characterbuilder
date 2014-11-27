@@ -109,9 +109,15 @@ angular.module('questions').controller('QuestionsController', ['$scope', '$state
 
         // Find existing Question
         $scope.findUserCurrent = function() {
-            $scope.question = Questions.get({
-                questionId: $scope.authentication.user.onQuestion
-            });
+            console.log($scope.authentication.user.onQuestion === '');
+            if( $scope.authentication.user.onQuestion === '' ){
+                $location.path('characters/create');
+            }
+            else {
+                $scope.question = Questions.get({
+                    questionId: $scope.authentication.user.onQuestion
+                });
+            }
         };
 
 
@@ -146,6 +152,7 @@ angular.module('questions').controller('QuestionsController', ['$scope', '$state
 
 
         };
+
 
 	}
 ]);
