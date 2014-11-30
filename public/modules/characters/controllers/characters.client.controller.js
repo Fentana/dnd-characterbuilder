@@ -78,7 +78,7 @@ angular.module('characters').controller('CharactersController', ['$scope', '$sta
 
         function bubbleUpOne(category){
             var subset = $scope.authentication.user.chosen_impacts.filter(function(item) {
-                 if(item.category == category){return item};
+                 if(item.category === category){return item};
             });
 
             if( subset.length === 1 ){

@@ -37,6 +37,28 @@
             </table>
         </div>
 
+        <div class="col-md-2 col-sm-2  col-xs-1">
+            <table class="table table-striped col-md-offset-1" >
+                <thead><tr><th>Skills</th></tr></thead>
+                <tbody ng-repeat="skill in job.skills">
+                <tr>
+                    <td>{{skill}}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="col-md-2 col-sm-2  col-xs-1">
+            <table class="table table-striped col-md-offset-1" >
+                <thead><tr><th>Starting Package</th></tr></thead>
+                <tbody ng-repeat="pack in job.starting_package">
+                <tr>
+                    <td>{{pack}}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
 
 
     </div>
@@ -45,7 +67,7 @@
 
     <div class="row">
         </br>
-        <div class="table table-striped col-sm-offset-1" ng-repeat="desc in job.descriptors">
+        <div class="col-sm-offset-1 col-md-10" ng-repeat="desc in job.descriptors">
             <p ng-bind-html="desc"></p>
         </div>
 

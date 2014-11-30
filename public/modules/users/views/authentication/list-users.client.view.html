@@ -1,0 +1,16 @@
+<section data-ng-controller="AuthenticationController" data-ng-init="find()">
+    <div class="list-group">
+        <a data-ng-repeat="user in users" class="list-group-item">
+            <h4 class="list-group-item-heading" data-ng-bind="user.displayName"></h4>
+            <small class="list-group-item-text">
+                email:
+                <span data-ng-bind="user.created"></span>
+                on:
+                <span data-ng-bind="user.onQuestion"></span>
+            </small>
+        </a>
+    </div>
+    <div class="alert alert-warning text-center" data-ng-hide="!users.$resolved || users.length">
+        No users yet.
+    </div>
+</section>

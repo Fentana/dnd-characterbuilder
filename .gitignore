@@ -9,4 +9,5 @@ app/tests/coverage/
 .idea/
 
 
+seeds/
 public/data.txt

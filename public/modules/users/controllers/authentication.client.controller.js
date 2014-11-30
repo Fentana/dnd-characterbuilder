@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('users').controller('AuthenticationController', ['$scope', '$http', '$location', 'Authentication',
-	function($scope, $http, $location, Authentication) {
+angular.module('users').controller('AuthenticationController', ['$scope', '$http', '$location', 'Authentication', 'Users',
+	function($scope, $http, $location, Authentication, Users) {
 		$scope.authentication = Authentication;
 
 		// If user is signed in then redirect back home
@@ -30,5 +30,11 @@ angular.module('users').controller('AuthenticationController', ['$scope', '$http
 				$scope.error = response.message;
 			});
 		};
+
+        // Find a list of Users
+        $scope.find = function() {
+            $scope.users = Users.query();
+        };
+
 	}
 ]);
