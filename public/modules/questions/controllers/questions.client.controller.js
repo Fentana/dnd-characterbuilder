@@ -137,13 +137,14 @@ angular.module('questions').controller('QuestionsController', ['$scope', '$state
             }
 
             var user = new Users($scope.authentication.user);
-            console.log(user);
+            //console.log(user);
 
             user.$update(function(response) {
                 //$scope.success = true;
                 Authentication.user = response;
                 console.log('sucess');
-                $location.path('questionnaire/');
+                window.location.reload();
+                //$location.reload();//.path('/questionnaire');
 
             }, function(response) {
                 console.log(response.data.message);

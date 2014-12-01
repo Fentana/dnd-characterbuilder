@@ -67,5 +67,31 @@ angular.module('users').controller('SettingsController', ['$scope', '$http', '$l
 				$scope.error = response.message;
 			});
 		};
+
+        // Find a list of Users
+        $scope.find = function() {
+            $scope.users = Users.query();
+        };
+
+
+        $scope.resetQuestions = function() {
+            $scope.user.onQuestion = '546d1e1a8ead44a170abb256'; // Comes from user model
+            $scope.user.chosen_impacts = [];
+            //console.log($scope.user);
+
+            var user = new Users($scope.user);
+
+            user.$update(function(response) {
+                $scope.user = response;
+                //$location.path('/users');
+                window.location.reload();
+
+            }, function(response) {
+                console.log(response.data.message);
+                $scope.error = response.data.message;
+            });
+        };
+
+
 	}
 ]);
