@@ -77,7 +77,6 @@ angular.module('users').controller('SettingsController', ['$scope', '$http', '$l
         $scope.resetQuestions = function() {
             $scope.user.onQuestion = '546d1e1a8ead44a170abb256'; // Comes from user model
             $scope.user.chosen_impacts = [];
-            //console.log($scope.user);
 
             var user = new Users($scope.user);
 

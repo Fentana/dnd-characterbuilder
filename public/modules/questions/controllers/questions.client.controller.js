@@ -109,7 +109,7 @@ angular.module('questions').controller('QuestionsController', ['$scope', '$state
 
         // Find existing Question
         $scope.findUserCurrent = function() {
-            console.log($scope.authentication.user.onQuestion === '');
+            //console.log($scope.authentication.user.onQuestion === '');
             if( $scope.authentication.user.onQuestion === '' ){
                 $location.path('characters/create');
             }
@@ -132,17 +132,14 @@ angular.module('questions').controller('QuestionsController', ['$scope', '$state
             var selected = $scope.question.answers[$scope.my_answer_index];
             $scope.authentication.user.onQuestion =  selected.lead_to;
 
-            for(var e in selected.impacts){
-                $scope.authentication.user.chosen_impacts.push( selected.impacts[e] );
-            }
+            var rezImps = mergeImpacts( JSON.parse(JSON.stringify($scope.authentication.user.chosen_impacts)), selected.impacts);
+            $scope.authentication.user.chosen_impacts = rezImps;
+
 
             var user = new Users($scope.authentication.user);
-            //console.log(user);
 
             user.$update(function(response) {
-                //$scope.success = true;
                 Authentication.user = response;
-                console.log('sucess');
                 window.location.reload();
                 //$location.reload();//.path('/questionnaire');
 
@@ -152,6 +149,29 @@ angular.module('questions').controller('QuestionsController', ['$scope', '$state
             });
 
 
+        };
+
+
+        function mergeImpacts(exsitingImps, newImps){
+            if( exsitingImps.length === 0){
+                return newImps;
+            }
+
+            for(var e in newImps){
+                var added = false;
+                for(var ol in exsitingImps){
+                    if(newImps[e].category === exsitingImps[ol].category && newImps[e].value === exsitingImps[ol].value){
+                        var oldwt = exsitingImps[ol].weight;
+                        exsitingImps[ol].weight = newImps[e].weight + oldwt;
+                        added=true;
+                    }
+                }
+
+                if(!added){
+                    exsitingImps.push(newImps[e]);
+                }
+            }
+            return exsitingImps;
         };
 
 

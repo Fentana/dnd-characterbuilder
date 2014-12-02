@@ -14,6 +14,7 @@ angular.module('characters').controller('CharactersController', ['$scope', '$sta
 
         $scope.preLoad = function(){
             $scope.gender = bubbleUpOne('gender').toUpperCase();
+            $scope.alignment = bubbleUpOne('alignment').toUpperCase()+" "+bubbleUpOne('alignment2').toUpperCase();
             $scope.attr = {s:8,d:8,c:8,i:8,w:8,h:8};
             $scope.races = [];
         };
@@ -81,12 +82,26 @@ angular.module('characters').controller('CharactersController', ['$scope', '$sta
                  if(item.category === category){return item};
             });
 
-            if( subset.length === 1 ){
+            if( subset.length === 0 ){
+                return ""
+            }
+            else if( subset.length === 1 ){
                 return subset[0].value
+            }
+            else{
+                return subset.sort(compareByValue)[0].value;
             }
             //// add code to return only top value for given category
 
         };
+
+        function compareByValue(a,b){
+            if(a.value < b.value)
+                return -1;
+            if(a.value > b.value)
+                return 1;
+            return 0;
+        }
 
 	}
 ]);
