@@ -17,22 +17,24 @@
         </small>
     </div>
 
-    <div class="col-md-3 col-sm-5  col-xs-3">
+    <div class="col-md-7 col-sm-5  col-xs-3">
 
-        <table class="table table-striped col-md-offset-1" style="width: 500px">
+        <table class="table table-striped col-md-offset-1 col-md-7" >
             <thead><tr><th>Category</th><th>Value</th></tr></thead>
             <tbody ng-repeat="(_key_, _value_) in race.enhancers">
             <tr>
                 <td>{{_key_}}</td>
-                <td>{{_value_}}</td>
-\            </tr>
+                <td>
+                    <span data-ng-if="! _value_.Desc"> {{_value_}} </span>
+                    <span data-ng-if=" _value_.Desc"> {{_value_["Desc"]}} </span>
+                </td>
+            </tr>
             </tbody>
         </table>
 
 
 
     </div>
-
 
     </div>
 

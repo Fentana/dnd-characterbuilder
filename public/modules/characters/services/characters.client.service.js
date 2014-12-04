@@ -11,3 +11,9 @@ angular.module('characters').factory('Characters', ['$resource',
 		});
 	}
 ]);
+
+angular.module('characters').factory('PersonalFull', ['$resource',
+    function($resource) {
+        return $resource('/charactersPersonality/:personalShort', { personalShort: '@short'});
+    }
+]);

@@ -10,12 +10,94 @@
 			<i class="glyphicon glyphicon-trash"></i>
 		</a>
 	</div>
-	<small>
-		<em class="text-muted">
-			Posted on
-			<span data-ng-bind="personality.created | date:'mediumDate'"></span>
-			by
-			<span data-ng-bind="personality.user.displayName"></span>
-		</em>
-	</small>
+
+
+    <div class="row">
+        </br>
+        <div ng-repeat="desc in personality.descriptors">
+            <p ng-bind-html="desc"></p>
+        </div>
+    </div>
+
+
+    <div class="row">
+        </br>
+        <h4>Feature Gained:</h4>
+        <p ng-bind-html="personality.feature"></p>
+    </div>
+
+
+    <div class="row">
+        </br>
+        <div class="col-md-4 col-sm-4  col-xs-4">
+            <strong>Specialty:</strong>
+            <span data-ng-bind="personality.speciality[0].Desc"></span>
+        </div>
+        <div class="col-md-4 col-sm-4  col-xs-4">
+            <strong>Skill Proficency:</strong>
+            <span data-ng-bind="personality.skills.join(', ')"></span>
+        </div>
+        <div class="col-md-4 col-sm-4  col-xs-4">
+            <strong>Equipment Gained:</strong>
+            <span data-ng-bind="personality.equipment.join(', ')"></span>
+        </div>
+    </div>
+
+
+    <div class="row">
+        </br>
+        <div class="col-md-6 col-sm-6  col-xs-6">
+            <table class="table table-striped" >
+                <thead><tr><th>Ideals</th></tr></thead>
+                <tbody ng-repeat="ideal in personality.ideals track by $index">
+                <tr>
+                    <td>{{$index+1}}</td>
+                    <td>{{ideal.title}}</td>
+                    <td>{{ideal.desc}} <strong>({{ideal.align}})</strong></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="col-md-6 col-sm-6  col-xs-6">
+            <table class="table table-striped col-md-offset-1" >
+                <thead><tr><th>Bonds</th></tr></thead>
+                <tbody ng-repeat="bond in personality.bonds track by $index">
+                <tr>
+                    <td>{{$index+1}}</td>
+                    <td>{{bond}}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row">
+        </br>
+        <div class="col-md-6 col-sm-6  col-xs-6">
+            <table class="table table-striped" >
+                <thead><tr><th>Traits</th></tr></thead>
+                <tbody ng-repeat="trait in personality.traits track by $index">
+                <tr>
+                    <td>{{$index+1}}</td>
+                    <td>{{trait}}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="col-md-6 col-sm-6  col-xs-6">
+            <table class="table table-striped col-md-offset-1" >
+                <thead><tr><th>Flaws</th></tr></thead>
+                <tbody ng-repeat="flaw in personality.flaws track by $index">
+                <tr>
+                    <td>{{$index+1}}</td>
+                    <td>{{flaw}}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+
 </section>

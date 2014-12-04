@@ -14,6 +14,11 @@ module.exports = function(app) {
 		.put(users.requiresLogin, characters.hasAuthorization, characters.update)
 		.delete(users.requiresLogin, characters.hasAuthorization, characters.delete);
 
+    app.route('/charactersPersonality/:personalShort')
+        .get(characters.read_P)
+
+
 	// Finish by binding the Character middleware
-	app.param('characterId', characters.characterByID);
+    app.param('characterId', characters.characterByID);
+    app.param('personalShort', characters.personalityByShort);
 };

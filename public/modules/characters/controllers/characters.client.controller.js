@@ -1,9 +1,11 @@
 'use strict';
 
 // Characters controller
-angular.module('characters').controller('CharactersController', ['$scope', '$stateParams', '$location', 'Authentication', 'Characters',
-	function($scope, $stateParams, $location, Authentication, Characters ) {
+angular.module('characters').controller('CharactersController', ['$scope', '$stateParams', '$location', 'Authentication', 'Characters', 'PersonalFull',
+	function($scope, $stateParams, $location, Authentication, Characters, PersonalFull ) {
 		$scope.authentication = Authentication;
+        $scope.languages = ['Common','Dwarvish','Elvish','Giant','Gnomish','Goblin','Halfling','Orc','Abyssal','Celestial','Draconic','Deep Speech','Infernal','Primordial','Sylvan','Undercommon'];
+
 
         $scope.rolling = function(){
             var attrIds=['str1','dex1','con1','int1','wis1','cha1'];
@@ -16,7 +18,13 @@ angular.module('characters').controller('CharactersController', ['$scope', '$sta
             $scope.gender = bubbleUpOne('gender').toUpperCase();
             $scope.alignment = bubbleUpOne('alignment').toUpperCase()+" "+bubbleUpOne('alignment2').toUpperCase();
             $scope.attr = {s:8,d:8,c:8,i:8,w:8,h:8};
-            $scope.races = [];
+            $scope.races = ['Human','Dwarf'];
+            $scope.classes = ['Cleric','Rouge'];
+            var myPersonality = 'acolyte';
+            $scope.personality = PersonalFull.get({
+                personalShort: myPersonality
+            });
+
         };
 
 		// Create new Character
