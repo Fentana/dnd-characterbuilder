@@ -53,9 +53,21 @@
 
 
                 <div class="form-group">
-                    <div class="controls col-md-3 ">
+                    <div class="controls col-md-4 ">
                         <label class="control-label" for="pl">Personality Architype</label>
                         <input type="text" data-ng-model="personality.name" id="pl" class="form-control" value="" readonly>
+                    </div>
+                    <div ng-include="modules/characters/views/partials/personality-form.client.part.html"></div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-2 col-sm-2  col-xs-2">
+                        <strong>Skill Proficency:</strong></br>
+                        <span data-ng-bind="personality.skills.join(', ')"></span>
+                    </div>
+                    <div class="col-md-4 col-sm-4  col-xs-4">
+                        <strong>Equipment Gained:</strong>
+                        <span data-ng-bind="personality.equipment.join(', ')"></span>
                     </div>
 
                 </div>
