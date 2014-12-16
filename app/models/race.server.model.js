@@ -22,13 +22,24 @@ var RaceSchema = new Schema({
         type: String
     },
     descriptors: {
-        type: Array,
+        type: [{
+            title: { type: String },
+            desc: { type: String }
+        }],
         default: []   // title & text per element
     },
     enhancers: {
         // mixed nested
         //default: null
         any: Schema.Types.Mixed
+    },
+    attribute_bonuses: {
+        str: 0,
+        dex: 0,
+        con: 0,
+        int: 0,
+        wis: 0,
+        cha: 0
     },
     speed: {
         type: Number

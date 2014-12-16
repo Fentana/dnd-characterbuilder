@@ -1,8 +1,8 @@
 'use strict';
 
 // Races controller
-angular.module('races').controller('RacesController', ['$scope', '$stateParams', '$location', 'Authentication', 'Races',
-	function($scope, $stateParams, $location, Authentication, Races ) {
+angular.module('races').controller('RacesController', ['$scope', '$stateParams', '$location', 'Authentication', 'Races', 'SharedData',
+	function($scope, $stateParams, $location, Authentication, Races, SharedData ) {
 		$scope.authentication = Authentication;
 
 		// Create new Race
@@ -41,12 +41,15 @@ angular.module('races').controller('RacesController', ['$scope', '$stateParams',
 
 		// Update existing Race
 		$scope.update = function() {
+
 			var race = $scope.race ;
+            console.log('update',race)
 
 			race.$update(function() {
 				$location.path('races/' + race._id);
 			}, function(errorResponse) {
 				$scope.error = errorResponse.data.message;
+                console.log();
 			});
 		};
 
@@ -57,9 +60,37 @@ angular.module('races').controller('RacesController', ['$scope', '$stateParams',
 
 		// Find existing Race
 		$scope.findOne = function() {
-			$scope.race = Races.get({ 
+            $scope.languages = SharedData.languages;
+            $scope.actions = SharedData.actions;
+            $scope.in_type = "text";
+            $scope.act_on_array=[];
+
+            $scope.race = Races.get({
 				raceId: $stateParams.raceId
 			});
 		};
+
+        $scope.add_desc = function(){
+            $scope.race.descriptors.push( {title:$scope.new_descriptor_title, desc:$scope.new_descriptor_text} );
+            $scope.new_descriptor_title = '';
+            $scope.new_descriptor_text = '';
+            //console.log($scope.race.descriptors);
+        };
+
+        $scope.action_change = function(t){
+            //console.log(t)
+
+        };
+
+        $scope.filterAttrBonuses = function(arr){
+            var result = {};
+            angular.forEach(arr, function(value, key) {
+                if (value != 0) {
+                    result[key] = value;
+                }
+            });
+            return result;
+        };
+
 	}
 ]);

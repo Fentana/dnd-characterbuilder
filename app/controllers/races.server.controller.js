@@ -43,7 +43,8 @@ exports.update = function(req, res) {
 
 	race.save(function(err) {
 		if (err) {
-			return res.status(400).send({
+            console.log(err);
+            return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)
 			});
 		} else {
@@ -98,8 +99,8 @@ exports.raceByID = function(req, res, next, id) { Race.findById(id).populate('us
  * Race authorization middleware
  */
 exports.hasAuthorization = function(req, res, next) {
-	if (req.race.user.id !== req.user.id) {
-		return res.status(403).send('User is not authorized');
-	}
+//	if (req.race.user.id !== req.user.id) {
+//		return res.status(403).send('User is not authorized');
+//	}
 	next();
 };

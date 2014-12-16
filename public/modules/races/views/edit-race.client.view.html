@@ -1,22 +1,174 @@
 <section data-ng-controller="RacesController" data-ng-init="findOne()">
     <div class="page-header">
-        <h1>Edit Race</h1>
+        <h1>Edit Race: {{race.short}}</h1>
+
+        <div data-ng-show="error" class="text-danger">
+            <strong data-ng-bind="error"></strong>
+        </div>
     </div>
     <div class="col-md-12">
         <form class="form-horizontal" data-ng-submit="update()" novalidate>
             <fieldset>
+
                 <div class="form-group">
-                    <label class="control-label" for="name">Name</label>
-                    <div class="controls">
-                        <input type="text" data-ng-model="race.name" id="name" class="form-control" placeholder="Name" required>
+                    <div class="controls col-md-5">
+                        <label class="control-label" for="al">Short Id: </label>
+                        <input type="text" data-ng-model="race.short" id="al" class="form-control" readonly>
+                    </div>
+
+                    <div class="controls col-md-5">
+                        <label class="control-label" for="name">Name: </label>
+                        <input type="text" data-ng-model="race.name" id="name" class="form-control" placeholder="Name"
+                               required>
                     </div>
                 </div>
+
                 <div class="form-group">
-                    <input type="submit" value="Update" class="btn btn-default">
+                    <div class="controls col-md-12">
+                        <label class="control-label" for="imgpath">Image Path: </label>
+                        <input type="text" data-ng-model="race.profile_image" id="imgpath" class="form-control"
+                               readonly>
+                    </div>
                 </div>
-				<div data-ng-show="error" class="text-danger">
-					<strong data-ng-bind="error"></strong>
-				</div>
+
+                <div class="form-group">
+                    <div class="controls col-md-2">
+                        <label class="control-label" for="ag">Age: </label>
+                        <input type="text" data-ng-model="race.age" id="ag" class="form-control" placeholder="X-Yyrs"
+                               required>
+                    </div>
+
+                    <div class="controls col-md-2">
+                        <label class="control-label" for="sp">Speed: </label>
+                        <input type="number" data-ng-model="race.speed" id="sp" class="form-control" min="0" max="50"/>
+                    </div>
+                    <div class="controls col-md-2">
+                        <label class="control-label" for="siz">Size: </label>
+                        <input type="text" data-ng-model="race.size" id="siz" class="form-control"
+                               placeholder="[ S, M, L ]"
+                               required>
+                    </div>
+
+                    <div class="controls col-md-2">
+                        <label class="control-label" for="lang">Languages: </label>
+                        <select class="multiselect" id="lang" data-ng-model="race.languages"
+                                ng-options="item as item for item in languages" multiple="multiple"
+                                multiselect-dropdown></select>
+                    </div>
+
+                </div>
+
+
+                <div class="form-group">
+                    <div class="controls col-md-1" data-ng-repeat="(attr,val) in race.attribute_bonuses">
+                        <label class="control-label" for="str1">{{attr.toUpperCase()}}</label>
+                        <input type="number" data-ng-model="race.attribute_bonuses[attr]" id="str1" class="form-control"
+                               data-ng-value="val" min="0" max="6"/>
+                    </div>
+                </div>
+
+
+                </br>
+
+
+                <div class="form-group">
+                    <div class="controls col-md-12">
+                        <label class="control-label" for="imgpath">Text Descriptions: </label>
+
+                        <table class="table table-striped">
+                            <tbody ng-repeat="txt in race.descriptors track by $index">
+                            <tr>
+                                <th>{{$index+1}}: {{txt.title}}</th>
+                                <td>{{txt.desc}}</td>
+                                <td><a class="btn btn-danger btn-sm" data-ng-click="remove_desc($index)">X</a></td>
+                            </tr>
+                            </tbody>
+                        </table>
+
+                        <div class="controls col-md-3">
+                            <label class="control-label" for="desc_tile">Title: </label>
+                            <input type="text" id="desc_tile" data-ng-model="new_descriptor_title"
+                                   class="form-control"/>
+                        </div>
+                        <div class="controls col-md-8">
+                            <label class="control-label" for="desc_txt">Text: </label>
+                            <input type="text" id="desc_txt" data-ng-model="new_descriptor_text" class="form-control"/>
+                        </div>
+                        <a class="btn btn-success btn-sm pull-right" style="margin-top: 25px;"
+                           data-ng-click="add_desc()">+</a>
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <div class="controls col-md-12">
+                        <label class="control-label" for="imgpath">Racial Attributes: </label>
+
+
+                        <table class="table table-striped">
+                            <tbody ng-repeat="txt in race.enhancers track by $index">
+                            <tr>
+                                <th>{{$index+1}}: {{txt.title}}</th>
+                                <td>{{txt.desc}}</td>
+                                <td style="width:30px;"><a class="btn btn-danger btn-sm"
+                                                           data-ng-click="remove_desc($index)">X</a></td>
+                            </tr>
+                            </tbody>
+                        </table>
+
+                        <div class="row">
+
+                            <div class="controls col-md-2">
+                                <label class="control-label" for="racial_tile">Title: </label>
+                                <input type="text" id="racial_tile" data-ng-model="new_racial_title"
+                                       class="form-control"/>
+                            </div>
+                            <div class="controls col-md-2">
+                                <label class="control-label" for="desc_txt">Action: </label>
+                                <select ng-model="my_action" ng-options="item for item in actions"
+                                        ng-change="action_change(my_action)" required></select>
+
+                            </div>
+                            <div class="controls col-md-2">
+                                <label class="control-label" for="act_on">Act On: </label>
+
+                                <div ng-switch-on="in_type">
+                                <span ng-switch-when="text">
+                                <input type="text" id="act_on" data-ng-model="to_act_on" class="form-control"/>
+                                    </span>
+                                   <span ng-switch-when="select">
+
+                                <select ng-model="to_act_on" ng-options="item for item in act_on_array"
+                                        ng-change="action_change(my_action)" required></select>
+                                       </span>
+                                </div>
+                                <!-- <div class="controls col-md-3">
+                                     <label class="control-label" for="act_on">Action Result: </label>
+                                     <input type="text" id="act_on" data-ng-model="to_act_on" class="form-control"/>
+
+                                 </div>-->
+                            </div>
+                            <div class="row">
+                                <div class="controls col-md-10">
+                                    <label class="control-label" for="act_desc">Text Description: </label>
+                                    <input type="text" id="act_desc" data-ng-model="action_description"
+                                           class="form-control"/>
+
+                                </div>
+                                <div class="controls col-md-1">
+                                    <a class="btn btn-success btn-sm" style="margin-top: 25px;"
+                                       data-ng-click="add_desc()">+</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    </br></br>
+
+                    <div class="form-group">
+                        <input type="submit" value="Update" class="btn btn-default">
+                    </div>
+
             </fieldset>
         </form>
     </div>

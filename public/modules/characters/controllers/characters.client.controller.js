@@ -1,11 +1,10 @@
 'use strict';
 
 // Characters controller
-angular.module('characters').controller('CharactersController', ['$scope', '$stateParams', '$location', 'Authentication', 'Characters', 'PersonalFull',
-	function($scope, $stateParams, $location, Authentication, Characters, PersonalFull ) {
+angular.module('characters').controller('CharactersController', ['$scope', '$stateParams', '$location', 'Authentication', 'Characters', 'PersonalFull', 'SharedData',
+	function($scope, $stateParams, $location, Authentication, Characters, PersonalFull, SharedData ) {
 		$scope.authentication = Authentication;
-        $scope.languages = ['Common','Dwarvish','Elvish','Giant','Gnomish','Goblin','Halfling','Orc','Abyssal','Celestial','Draconic','Deep Speech','Infernal','Primordial','Sylvan','Undercommon'];
-
+        $scope.languages = SharedData.languages;
 
         $scope.rolling = function(){
             var attrIds=['str1','dex1','con1','int1','wis1','cha1'];
