@@ -109,9 +109,10 @@
                             <tbody ng-repeat="txt in race.enhancers track by $index">
                             <tr>
                                 <th>{{$index+1}}: {{txt.title}}</th>
+                                <td>{{txt.action}}</td>
                                 <td>{{txt.desc}}</td>
                                 <td style="width:30px;"><a class="btn btn-danger btn-sm"
-                                                           data-ng-click="remove_desc($index)">X</a></td>
+                                                           data-ng-click="remove_racial($index)">X</a></td>
                             </tr>
                             </tbody>
                         </table>
@@ -125,47 +126,38 @@
                             </div>
                             <div class="controls col-md-2">
                                 <label class="control-label" for="desc_txt">Action: </label>
-                                <select ng-model="my_action" ng-options="item for item in actions"
-                                        ng-change="action_change(my_action)" required></select>
+                                <select ng-model="my_action" ng-options="my_action for my_action in actions"
+                                        ng-change="action_change(my_action)" placeholder="0" required></select>
 
                             </div>
                             <div class="controls col-md-2">
                                 <label class="control-label" for="act_on">Act On: </label>
 
-                                <div ng-switch-on="in_type">
-                                <span ng-switch-when="text">
-                                <input type="text" id="act_on" data-ng-model="to_act_on" class="form-control"/>
-                                    </span>
-                                   <span ng-switch-when="select">
-
-                                <select ng-model="to_act_on" ng-options="item for item in act_on_array"
-                                        ng-change="action_change(my_action)" required></select>
-                                       </span>
+                                <div ng-show='act_on_array.length > 0'>
+                                    <select class="multiselect" id="act_on" data-ng-model="my_actions_on"
+                                            ng-options="item as item for item in act_on_array" multiple="multiple"
+                                            multiselect-dropdown></select>
                                 </div>
-                                <!-- <div class="controls col-md-3">
-                                     <label class="control-label" for="act_on">Action Result: </label>
-                                     <input type="text" id="act_on" data-ng-model="to_act_on" class="form-control"/>
-
-                                 </div>-->
                             </div>
                             <div class="row">
                                 <div class="controls col-md-10">
                                     <label class="control-label" for="act_desc">Text Description: </label>
-                                    <input type="text" id="act_desc" data-ng-model="action_description"
+                                    <input type="text" id="act_desc" data-ng-model="new_racial_description"
                                            class="form-control"/>
 
                                 </div>
                                 <div class="controls col-md-1">
                                     <a class="btn btn-success btn-sm" style="margin-top: 25px;"
-                                       data-ng-click="add_desc()">+</a>
+                                       data-ng-click="add_racial_attr()">+</a>
                                 </div>
                             </div>
                         </div>
                     </div>
+                </div>
 
-                    </br></br>
 
-                    <div class="form-group">
+
+                    <div class="form-group" style="margin-top: 20px;">
                         <input type="submit" value="Update" class="btn btn-default">
                     </div>
 

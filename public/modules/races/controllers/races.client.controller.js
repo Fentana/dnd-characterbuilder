@@ -62,24 +62,68 @@ angular.module('races').controller('RacesController', ['$scope', '$stateParams',
 		$scope.findOne = function() {
             $scope.languages = SharedData.languages;
             $scope.actions = SharedData.actions;
-            $scope.in_type = "text";
+            $scope.my_action = 'text_only';
             $scope.act_on_array=[];
 
             $scope.race = Races.get({
 				raceId: $stateParams.raceId
 			});
-		};
+        };
 
         $scope.add_desc = function(){
             $scope.race.descriptors.push( {title:$scope.new_descriptor_title, desc:$scope.new_descriptor_text} );
             $scope.new_descriptor_title = '';
             $scope.new_descriptor_text = '';
-            //console.log($scope.race.descriptors);
+        };
+
+        $scope.remove_desc = function(i){
+            if (null === i){ console.log(i); }
+            else { $scope.race.descriptors.splice(i,1); }
+        };
+
+        $scope.add_racial_attr = function(){
+            console.log($scope.race);
+            if(typeof $scope.race.enhancers === 'undefined'){
+                $scope.race.enhancers =[];
+            };
+
+            var newRacial = {
+                title:$scope.new_racial_title,
+                action:$scope.my_action,
+                desc:$scope.new_racial_description
+            }
+            if(typeof $scope.my_actions_on !== 'undefined'){
+                if( $scope.my_actions_on.length > 0){
+                    newRacial.action_on = $scope.my_actions_on
+                }
+            }
+            $scope.race.enhancers.push( newRacial );
+            $scope.new_racial_title = '';
+            $scope.new_racial_description = '';
+            $scope.my_action = 'text_only';
+            $scope.act_on_array=[];
+
+        };
+
+        $scope.remove_racial = function(i){
+            if (null === i){ console.log(i); }
+            else { $scope.race.enhancers.splice(i,1); }
         };
 
         $scope.action_change = function(t){
-            //console.log(t)
-
+            if(t === 'tool_proficiency'){
+                $scope.act_on_array = SharedData.tools;
+            }
+            else if(t === 'equipment_proficiency'){
+                $scope.act_on_array = SharedData.equipment;
+            }
+            else if(t === 'skill'){
+                $scope.act_on_array = SharedData.skills;
+            }
+            else if(t === 'hp_bonus'){
+                $scope.act_on_array = SharedData.special_hp;
+            }
+            else{ $scope.act_on_array=[]; }
         };
 
         $scope.filterAttrBonuses = function(arr){
