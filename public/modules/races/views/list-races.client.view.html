@@ -18,6 +18,21 @@
                         <span data-ng-bind="race.speed"></span>
                     </small>
                 </div>
+                <div class="col-md-2  col-sm-4 " style="margin-top: 4px">
+                    <h6 class="list-group-item-heading">Languages ({{race.languages.length}})</h6>
+                    <small class="list-group-item-text">
+                        <!--<strong>Age:</strong>-->
+                        <span data-ng-bind="race.languages"></span>
+                    </small>
+                </div>
+                <div class="col-md-3  col-sm-5 " style="margin-top: 4px">
+                    <h6 class="list-group-item-heading">Bonus Attributes</h6>
+                    <small class="list-group-item-text">
+                        <!--<strong>Age:</strong>-->
+                        <span data-ng-bind="prettyPrintAttrBonuses(race.attribute_bonuses)"></span>
+                    </small>
+                </div>
+
             </div>
         </a>
     </div>

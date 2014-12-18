@@ -118,10 +118,17 @@ angular.module('races').controller('RacesController', ['$scope', '$stateParams',
                 $scope.act_on_array = SharedData.equipment;
             }
             else if(t === 'skill'){
-                $scope.act_on_array = SharedData.skills;
+                var tmpSkill=[]
+                for(var u=0; u<SharedData.skills.length;u++){
+                    tmpSkill.push( SharedData.skills[u].name );
+                }
+                $scope.act_on_array = tmpSkill;
             }
             else if(t === 'hp_bonus'){
                 $scope.act_on_array = SharedData.special_hp;
+            }
+            else if(t === 'adv_resist_types'){
+                $scope.act_on_array = SharedData.advantage_resistance_types;
             }
             else{ $scope.act_on_array=[]; }
         };
@@ -134,6 +141,21 @@ angular.module('races').controller('RacesController', ['$scope', '$stateParams',
                 }
             });
             return result;
+        };
+
+        $scope.prettyPrintAttrBonuses = function(arr){
+            var result = [];
+            angular.forEach(arr, function(value, key) {
+                if (value != 0) {
+                    if(value>0){
+                        result.push( key.toUpperCase()+": +"+value);
+                    }
+                    else{
+                        result.push( key.toUpperCase()+": "+value);
+                    }
+                }
+            });
+            return result.join(', ');
         };
 
 	}
