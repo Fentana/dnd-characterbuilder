@@ -1,13 +1,13 @@
 <section data-ng-controller="JobsController" data-ng-init="findOne()">
-	<div class="page-header">
-		<h1 data-ng-bind="job.name"></h1>
+    <div class="page-header">
+        <h1 data-ng-bind="job.name"></h1>
         <a class="btn btn-primary pull-right" href="/#!/jobs/{{job._id}}/edit">Edit {{job.name}}</a>
     </div>
 
 
     <div class="row">
         <div class="col-md-3 col-sm-4  col-xs-3">
-            <img alt="this Image" class="img-responsive text-center" src="{{job.profile_image}}" />
+            <img alt="this Image" class="img-responsive text-center" src="{{job.profile_image}}"/>
             <small class="list-group-item-text col-md-offset-2 col-sm-offset-2">
                 <strong>Hit Die:</strong>
                 d<span data-ng-bind="job.hit_die"></span>
@@ -17,19 +17,27 @@
         </div>
 
         <div class="col-md-2 col-sm-2  col-xs-1">
-            <table class="table table-striped col-md-offset-1" >
-                <thead><tr><th>Saving Throws</th></tr></thead>
+            <table class="table table-striped col-md-offset-1">
+                <thead>
+                <tr>
+                    <th>Saving Throws</th>
+                </tr>
+                </thead>
                 <tbody ng-repeat="equip in job.saving_throws">
                 <tr>
-                    <td>{{equip}}</td>
+                    <td>{{equip.toUpperCase()}}</td>
                 </tr>
                 </tbody>
             </table>
         </div>
 
         <div class="col-md-2 col-sm-2  col-xs-1">
-            <table class="table table-striped col-md-offset-1" >
-                <thead><tr><th>Proficiencies</th></tr></thead>
+            <table class="table table-striped col-md-offset-1">
+                <thead>
+                <tr>
+                    <th>Proficiencies</th>
+                </tr>
+                </thead>
                 <tbody ng-repeat="equip in job.equipment_profiencies">
                 <tr>
                     <td>{{equip}}</td>
@@ -39,8 +47,12 @@
         </div>
 
         <div class="col-md-2 col-sm-2  col-xs-1">
-            <table class="table table-striped col-md-offset-1" >
-                <thead><tr><th>Skills</th></tr></thead>
+            <table class="table table-striped col-md-offset-1">
+                <thead>
+                <tr>
+                    <th>Skills</th>
+                </tr>
+                </thead>
                 <tbody ng-repeat="skill in job.skills">
                 <tr>
                     <td>{{skill}}</td>
@@ -50,8 +62,12 @@
         </div>
 
         <div class="col-md-2 col-sm-2  col-xs-1">
-            <table class="table table-striped col-md-offset-1" >
-                <thead><tr><th>Starting Package</th></tr></thead>
+            <table class="table table-striped col-md-offset-1">
+                <thead>
+                <tr>
+                    <th>Starting Package</th>
+                </tr>
+                </thead>
                 <tbody ng-repeat="pack in job.starting_package">
                 <tr>
                     <td>{{pack}}</td>
@@ -61,15 +77,14 @@
         </div>
 
 
-
     </div>
-
 
 
     <div class="row">
         </br>
         <div class="col-sm-offset-1 col-md-10" ng-repeat="desc in job.descriptors">
-            <p ng-bind-html="desc"></p>
+            <h4 ng-bind-html="desc.title"></h4>
+            <p ng-bind-html="desc.desc"></p></br>
         </div>
 
     </div>

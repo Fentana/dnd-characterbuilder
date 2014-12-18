@@ -98,8 +98,8 @@ exports.jobByID = function(req, res, next, id) { Job.findById(id).populate('user
  * Job authorization middleware
  */
 exports.hasAuthorization = function(req, res, next) {
-	if (req.job.user.id !== req.user.id) {
+	/*if (req.job.user.id !== req.user.id) {
 		return res.status(403).send('User is not authorized');
-	}
+	}*/
 	next();
 };

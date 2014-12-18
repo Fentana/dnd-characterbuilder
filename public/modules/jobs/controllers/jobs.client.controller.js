@@ -1,8 +1,8 @@
 'use strict';
 
 // Jobs controller
-angular.module('jobs').controller('JobsController', ['$scope', '$stateParams', '$location', 'Authentication', 'Jobs',
-	function($scope, $stateParams, $location, Authentication, Jobs ) {
+angular.module('jobs').controller('JobsController', ['$scope', '$stateParams', '$location', 'Authentication', 'Jobs', 'SharedData',
+	function($scope, $stateParams, $location, Authentication, Jobs, SharedData ) {
 		$scope.authentication = Authentication;
 
 		// Create new Job
@@ -57,9 +57,35 @@ angular.module('jobs').controller('JobsController', ['$scope', '$stateParams', '
 
 		// Find existing Job
 		$scope.findOne = function() {
-			$scope.job = Jobs.get({ 
+            $scope.attributes = SharedData.attributes;
+            $scope.skills = SharedData.skills;
+            $scope.equipment = SharedData.equipment;
+
+            $scope.job = Jobs.get({
 				jobId: $stateParams.jobId
 			});
 		};
+
+        $scope.add_st_pack = function(){
+                $scope.job.starting_package.push( $scope.new_starting_package );
+                $scope.new_starting_package = '';
+        };
+
+        $scope.remove_start_pack = function(i){
+            if (null === i){ console.log(i); }
+            else { $scope.job.starting_package.splice(i,1); }
+        };
+
+        $scope.add_desc = function(){
+            $scope.job.descriptors.push( {title:$scope.new_descriptor_title, desc:$scope.new_descriptor_text} );
+            $scope.new_descriptor_title = '';
+            $scope.new_descriptor_text = '';
+        };
+
+        $scope.remove_desc = function(i){
+            if (null === i){ console.log(i); }
+            else { $scope.job.descriptors.splice(i,1); }
+        };
+
 	}
 ]);

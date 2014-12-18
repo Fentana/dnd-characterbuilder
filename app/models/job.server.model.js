@@ -47,7 +47,13 @@ var JobSchema = new Schema({
         type: Array   // array of arrays, inner array is selectable
     },
     level_enhancers: {
-        type: Array
+        type: [{
+            proficiency_bonus: { type: String },
+            spell_slots: { type: String },
+            subclasses: { type: Array },
+            features: { type: Array }
+        }],
+        default: []   // title & text per element
     }
 
 });

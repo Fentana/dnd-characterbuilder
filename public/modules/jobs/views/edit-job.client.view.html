@@ -1,6 +1,6 @@
 <section data-ng-controller="JobsController" data-ng-init="findOne()">
     <div class="page-header">
-        <h1>Edit Job</h1>
+        <h1>Edit Class</h1>
     </div>
     <div class="col-md-12">
         <form class="form-horizontal" data-ng-submit="update()" novalidate>
@@ -18,6 +18,153 @@
                                required>
                     </div>
                 </div>
+
+                <div class="form-group">
+                    <div class="controls col-md-12">
+                        <label class="control-label" for="imgpath">Image Path: </label>
+                        <input type="text" data-ng-model="job.profile_image" id="imgpath" class="form-control"
+                               readonly>
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <div class="controls col-md-2">
+                        <label class="control-label" for="lang">Skill Options: </label>
+                        <select class="multiselect" id="lang" data-ng-model="job.skills"
+                                ng-options="item.id as item.name for item in skills" multiple="multiple"
+                                multiselect-dropdown></select>
+                    </div>
+                    <div class="controls col-md-2">
+                        <label class="control-label" for="lang">Primary Attr(s): </label>
+                        <select class="multiselect" id="lang" data-ng-model="job.primary_attr"
+                                ng-options="item.id as item.name for item in attributes" multiple="multiple"
+                                multiselect-dropdown></select>
+                    </div>
+                    <div class="controls col-md-2">
+                        <label class="control-label" for="lang">Saving Throws: </label>
+                        <select class="multiselect" id="lang" data-ng-model="job.saving_throws"
+                                ng-options="item.id as item.name for item in attributes" multiple="multiple"
+                                multiselect-dropdown></select>
+                    </div>
+                    <div class="controls col-md-2">
+                        <label class="control-label" for="lang">Equipment Profiencies: </label>
+                        <select class="multiselect" id="lang" data-ng-model="job.equipment_profiencies"
+                                ng-options="item as item for item in equipment" multiple="multiple"
+                                multiselect-dropdown></select>
+                    </div>
+
+                    <div class="controls col-md-4">
+                        <label class="control-label" for="lang">Starting Packages: </label>
+                        <div style="width:346px;height:74px;overflow:scroll;border:black 1px solid;">
+                            <table class="table table-striped">
+                                <tbody ng-repeat="txt in job.starting_package track by $index">
+                                <tr>
+                                    <td>{{txt}}</td>
+                                    <td><a class="btn btn-danger btn-xs" data-ng-click="remove_start_pack($index)">X</a></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+
+                </div>
+
+                <div class="form-group">
+                    <div class="controls col-md-2" >
+                        <label class="control-label" for="str1">Skill Slots</label>
+                        <input type="number" data-ng-model="job.skill_count" id="str1" class="form-control" min="0" max="10"/>
+                    </div>
+                    <div class="controls col-md-2" >
+                        <label class="control-label" for="hd">Hit Die</label>
+                        <input type="number" data-ng-model="job.hit_die" id="hd" class="form-control" min="0" max="12"/>
+                    </div>
+
+                    <div class="controls col-md-offset-2 col-md-5">
+                        <label class="control-label" for="st_pack_txt">Add to Starting Package: </label>
+                        <input type="text" id="st_pack_txt" data-ng-model="new_starting_package" class="form-control"/>
+                    </div>
+                    <a class="btn btn-success btn-sm pull-right" style="margin-top: 25px;"
+                       data-ng-click="add_st_pack()">+</a>
+
+                </div>
+
+
+                <div class="form-group">
+                    <div class="controls col-md-12">
+                        <label class="control-label" for="imgpath">Text Descriptions: </label>
+
+                        <table class="table table-striped">
+                            <tbody ng-repeat="txt in job.descriptors track by $index">
+                            <tr>
+                                <th>{{$index+1}}: {{txt.title}}</th>
+                                <td>{{txt.desc}}</td>
+                                <td><a class="btn btn-danger btn-sm" data-ng-click="remove_desc($index)">X</a></td>
+                            </tr>
+                            </tbody>
+                        </table>
+
+                        <div class="controls col-md-3">
+                            <label class="control-label" for="desc_tile">Title: </label>
+                            <input type="text" id="desc_tile" data-ng-model="new_descriptor_title"
+                                   class="form-control"/>
+                        </div>
+                        <div class="controls col-md-8">
+                            <label class="control-label" for="desc_txt">Text: </label>
+                            <input type="text" id="desc_txt" data-ng-model="new_descriptor_text" class="form-control"/>
+                        </div>
+                        <a class="btn btn-success btn-sm pull-right" style="margin-top: 25px;"
+                           data-ng-click="add_desc()">+</a>
+                    </div>
+                </div>
+
+
+               <hr style="width:80%">
+
+                <div class="form-group">
+                    <div class="controls col-md-12">
+                        <label class="control-label" for="imgpath">Levels Build: </label>
+
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th>Lvl</th>
+                                <th>Bonus</th>
+                            </tr>
+                            </thead>
+                            <tbody ng-repeat="lvl in job.level_enhancers track by $index">
+                            <tr>
+                                <th>{{$index+1}}</th>
+                                <td>{{lvl.proficiency_bonus}}</td>
+                                <td><a class="btn btn-danger btn-sm" data-ng-click="remove_desc($index)">X</a></td>
+                            </tr>
+                            </tbody>
+                        </table>
+
+                        <div class="controls col-md-3">
+                            <label class="control-label" for="desc_tile">Title: </label>
+                            <input type="text" id="desc_tile" data-ng-model="new_descriptor_title"
+                                   class="form-control"/>
+                        </div>
+                        <div class="controls col-md-8">
+                            <label class="control-label" for="desc_txt">Text: </label>
+                            <input type="text" id="desc_txt" data-ng-model="new_descriptor_text" class="form-control"/>
+                        </div>
+                        <a class="btn btn-success btn-sm pull-right" style="margin-top: 25px;"
+                           data-ng-click="add_desc()">+</a>
+                    </div>
+                </div>
+
+
+
+
+
+
+
+
+
+
 
 
 
