@@ -43,7 +43,7 @@ angular.module('races').controller('RacesController', ['$scope', '$stateParams',
 		$scope.update = function() {
 
 			var race = $scope.race ;
-            console.log('update',race)
+            //console.log('update',race)
 
 			race.$update(function() {
 				$location.path('races/' + race._id);
@@ -85,16 +85,17 @@ angular.module('races').controller('RacesController', ['$scope', '$stateParams',
             console.log($scope.race);
             if(typeof $scope.race.enhancers === 'undefined'){
                 $scope.race.enhancers =[];
-            };
+            }
 
             var newRacial = {
                 title:$scope.new_racial_title,
                 action:$scope.my_action,
                 desc:$scope.new_racial_description
-            }
+            };
+
             if(typeof $scope.my_actions_on !== 'undefined'){
                 if( $scope.my_actions_on.length > 0){
-                    newRacial.action_on = $scope.my_actions_on
+                    newRacial.action_on = $scope.my_actions_on;
                 }
             }
             $scope.race.enhancers.push( newRacial );
@@ -118,16 +119,23 @@ angular.module('races').controller('RacesController', ['$scope', '$stateParams',
                 $scope.act_on_array = SharedData.equipment;
             }
             else if(t === 'skill'){
-                var tmpSkill=[]
+                var tmpSkill=[];
                 for(var u=0; u<SharedData.skills.length;u++){
                     tmpSkill.push( SharedData.skills[u].name );
                 }
                 $scope.act_on_array = tmpSkill;
             }
+            else if(t === 'special_save'){
+                var tmpSave=[];
+                for(var u=0; u<SharedData.attributes.length;u++){
+                    tmpSave.push( SharedData.attributes[u].name );
+                }
+                $scope.act_on_array = tmpSave;
+            }
             else if(t === 'hp_bonus'){
                 $scope.act_on_array = SharedData.special_hp;
             }
-            else if(t === 'adv_resist_types'){
+            else if(t === 'conditions_types'){
                 $scope.act_on_array = SharedData.advantage_resistance_types;
             }
             else{ $scope.act_on_array=[]; }
@@ -136,7 +144,7 @@ angular.module('races').controller('RacesController', ['$scope', '$stateParams',
         $scope.filterAttrBonuses = function(arr){
             var result = {};
             angular.forEach(arr, function(value, key) {
-                if (value != 0) {
+                if (value !== 0) {
                     result[key] = value;
                 }
             });
@@ -146,12 +154,12 @@ angular.module('races').controller('RacesController', ['$scope', '$stateParams',
         $scope.prettyPrintAttrBonuses = function(arr){
             var result = [];
             angular.forEach(arr, function(value, key) {
-                if (value != 0) {
+                if (value !== 0) {
                     if(value>0){
-                        result.push( key.toUpperCase()+": +"+value);
+                        result.push( key.toUpperCase()+': +'+value);
                     }
                     else{
-                        result.push( key.toUpperCase()+": "+value);
+                        result.push( key.toUpperCase()+': '+value);
                     }
                 }
             });

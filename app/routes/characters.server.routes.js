@@ -15,7 +15,7 @@ module.exports = function(app) {
 		.delete(users.requiresLogin, characters.hasAuthorization, characters.delete);
 
     app.route('/charactersPersonality/:personalShort')
-        .get(characters.read_P)
+        .get(characters.read_P);
 
 
 	// Finish by binding the Character middleware

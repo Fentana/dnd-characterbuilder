@@ -125,20 +125,17 @@
                                 <input type="text" id="racial_tile" data-ng-model="new_racial_title"
                                        class="form-control"/>
                             </div>
-                            <div class="controls col-md-2">
+                            <div class="controls col-md-3">
                                 <label class="control-label" for="desc_txt">Action: </label>
                                 <select ng-model="my_action" ng-options="my_action for my_action in actions"
                                         ng-change="action_change(my_action)" placeholder="0" required></select>
 
                             </div>
-                            <div class="controls col-md-2">
+                            <div class="controls col-md-2" ng-show='act_on_array.length > 0'>
                                 <label class="control-label" for="act_on">Act On: </label>
-
-                                <div ng-show='act_on_array.length > 0'>
-                                    <select class="multiselect" id="act_on" data-ng-model="my_actions_on"
+                                   <select class="multiselect" id="act_on" data-ng-model="my_actions_on"
                                             ng-options="item as item for item in act_on_array" multiple="multiple"
                                             multiselect-dropdown></select>
-                                </div>
                             </div>
                             <div class="row">
                                 <div class="controls col-md-10">

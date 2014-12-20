@@ -172,7 +172,7 @@ angular.module('questions').controller('QuestionsController', ['$scope', '$state
                 }
             }
             return exsitingImps;
-        };
+        }
 
 
 	}

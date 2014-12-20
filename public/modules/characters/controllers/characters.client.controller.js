@@ -15,7 +15,7 @@ angular.module('characters').controller('CharactersController', ['$scope', '$sta
 
         $scope.preLoad = function(){
             $scope.gender = bubbleUpOne('gender').toUpperCase();
-            $scope.alignment = bubbleUpOne('alignment').toUpperCase()+" "+bubbleUpOne('alignment2').toUpperCase();
+            $scope.alignment = bubbleUpOne('alignment').toUpperCase()+' '+bubbleUpOne('alignment2').toUpperCase();
             $scope.attr = {s:8,d:8,c:8,i:8,w:8,h:8};
             $scope.races = ['Human','Dwarf'];
             $scope.classes = ['Cleric','Rouge'];
@@ -86,21 +86,21 @@ angular.module('characters').controller('CharactersController', ['$scope', '$sta
 
         function bubbleUpOne(category){
             var subset = $scope.authentication.user.chosen_impacts.filter(function(item) {
-                 if(item.category === category){return item};
+                 if(item.category === category){return item;}
             });
 
             if( subset.length === 0 ){
-                return ""
+                return '';
             }
             else if( subset.length === 1 ){
-                return subset[0].value
+                return subset[0].value;
             }
             else{
                 return subset.sort(compareByValue)[0].value;
             }
             //// add code to return only top value for given category
 
-        };
+        }
 
         function compareByValue(a,b){
             if(a.value < b.value)

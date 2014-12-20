@@ -60,6 +60,7 @@ angular.module('jobs').controller('JobsController', ['$scope', '$stateParams', '
             $scope.attributes = SharedData.attributes;
             $scope.skills = SharedData.skills;
             $scope.equipment = SharedData.equipment;
+            $scope.base_spell_slots = Array.apply(null, new Array(10)).map(Number.prototype.valueOf,0);
 
             $scope.job = Jobs.get({
 				jobId: $stateParams.jobId
@@ -87,5 +88,19 @@ angular.module('jobs').controller('JobsController', ['$scope', '$stateParams', '
             else { $scope.job.descriptors.splice(i,1); }
         };
 
-	}
+        $scope.add_new_sub = function(){
+            if($scope.job.subclasses.length <= 0){
+                $scope.job.subclasses.push('base');
+            }
+            $scope.job.subclasses.push( $scope.add_subclass.toLowerCase().replace(/\s+/g, '_') );
+            $scope.add_subclass = '';
+        };
+
+        $scope.remove_new_sub = function(i){
+            if (null === i){ console.log(i); }
+            else { $scope.job.subclasses.splice(i,1); }
+        };
+
+
+    }
 ]);

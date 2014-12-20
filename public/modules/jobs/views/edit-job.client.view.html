@@ -98,7 +98,7 @@
                         <table class="table table-striped">
                             <tbody ng-repeat="txt in job.descriptors track by $index">
                             <tr>
-                                <th>{{$index+1}}: {{txt.title}}</th>
+                                <th style="width:120px;">{{$index+1}}: {{txt.title}}</th>
                                 <td>{{txt.desc}}</td>
                                 <td><a class="btn btn-danger btn-sm" data-ng-click="remove_desc($index)">X</a></td>
                             </tr>
@@ -123,7 +123,33 @@
                <hr style="width:80%">
 
                 <div class="form-group">
-                    <div class="controls col-md-12">
+
+                <div class="controls col-md-5">
+
+                <label class="control-label" for="lang">Subclasses for Features: </label>
+                <div style="width:340px;height:60px;overflow:scroll;border:black 1px solid;">
+                    <table class="table table-striped">
+                        <tbody ng-repeat="txt in job.subclasses track by $index">
+                        <tr>
+                            <td>{{txt}}</td>
+                            <td><a class="btn btn-danger btn-xs" data-ng-show="$index > 0" data-ng-click="remove_start_pack($index)">X</a></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                </div>
+
+                <div class="controls col-md-5">
+                    <label class="control-label" for="sub_cls_txt">Create a Subclass: </label>
+                    <input type="text" id="sub_cls_txt" data-ng-model="add_subclass" class="form-control"/>
+                </div>
+                <a class="btn btn-success btn-sm pull-right" style="margin-top: 25px;"
+                   data-ng-click="add_new_sub()">Add This Subclass</a>
+                </div>
+
+
+                <div class="form-group">
+                    <div class="controls col-md-12" style="background-color:#EFFBFB;padding-bottom:12px;">
                         <label class="control-label" for="imgpath">Levels Build: </label>
 
                         <table class="table table-striped">
@@ -131,28 +157,85 @@
                             <tr>
                                 <th>Lvl</th>
                                 <th>Bonus</th>
+                                <th>Spells</th>
+                                <th>Features</th>
                             </tr>
                             </thead>
                             <tbody ng-repeat="lvl in job.level_enhancers track by $index">
                             <tr>
                                 <th>{{$index+1}}</th>
                                 <td>{{lvl.proficiency_bonus}}</td>
+                                <th>{{$index+1}}</th>
+
                                 <td><a class="btn btn-danger btn-sm" data-ng-click="remove_desc($index)">X</a></td>
                             </tr>
                             </tbody>
                         </table>
 
-                        <div class="controls col-md-3">
-                            <label class="control-label" for="desc_tile">Title: </label>
-                            <input type="text" id="desc_tile" data-ng-model="new_descriptor_title"
-                                   class="form-control"/>
+
+                        <div class="controls col-md-1" >
+                            <label class="control-label" for="lv">Level</label>
+                            <input type="number" data-ng-model="level.num" id="lv" class="form-control" min="1" max="20"/>
                         </div>
-                        <div class="controls col-md-8">
-                            <label class="control-label" for="desc_txt">Text: </label>
-                            <input type="text" id="desc_txt" data-ng-model="new_descriptor_text" class="form-control"/>
+
+                        <div class="controls col-md-1" >
+                            <label class="control-label pull-right" for="na">Spell Slotss:</label>
                         </div>
-                        <a class="btn btn-success btn-sm pull-right" style="margin-top: 25px;"
-                           data-ng-click="add_desc()">+</a>
+
+                        <div class="controls col-md-1" ng-repeat="n in base_spell_slots track by $index">
+                            <label class="control-label" for="lvsp">{{$index}}</label>
+                            <!--<input type="number" data-ng-model="n" ng-init="n = $index"id="lvsp" class="form-control" min="1" max="20"/>-->
+                            <input type="number" data-ng-model="n" id="lvsp" class="form-control" min="0" max="20"/>
+                        </div>
+
+
+
+
+
+                        <div class="row">
+
+                            <div class="controls col-md-2">
+                                <label class="control-label" for="racial_tile">Title: </label>
+                                <input type="text" id="racial_tile" data-ng-model="new_racial_title"
+                                       class="form-control"/>
+                            </div>
+                            <div class="controls col-md-3">
+                                <label class="control-label" for="desc_txt">Action: </label>
+                                <select ng-model="my_action" ng-options="my_action for my_action in actions"
+                                        ng-change="action_change(my_action)" placeholder="0" required></select>
+
+                            </div>
+                            <div class="controls col-md-2" ng-show='act_on_array.length > 0'>
+                                <label class="control-label" for="act_on">Act On: </label>
+                                <select class="multiselect" id="act_on" data-ng-model="my_actions_on"
+                                        ng-options="item as item for item in act_on_array" multiple="multiple"
+                                        multiselect-dropdown></select>
+                            </div>
+                            <div class="controls col-md-3">
+                                <label class="control-label" for="desc_txt">Belongs to: (Subclass?) </label>
+                                <select ng-model="my_action" ng-options="my_action for my_action in job.subclasses"
+                                        required></select>
+
+                            </div>
+
+                            <div class="row">
+                                <div class="controls col-md-10">
+                                    <label class="control-label" for="act_desc">Text Description: </label>
+                                    <input type="text" id="act_desc" data-ng-model="new_racial_description"
+                                           class="form-control"/>
+
+                                </div>
+                                <div class="controls col-md-1">
+                                    <a class="btn btn-success btn-sm" style="margin-top: 25px;"
+                                       data-ng-click="add_racial_attr()">+</a>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+
                     </div>
                 </div>
 

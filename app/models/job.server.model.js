@@ -40,6 +40,9 @@ var JobSchema = new Schema({
     skills: {
         type: Array
     },
+    subclasses: {
+        type: Array
+    },
     skill_count: {
         type: Number
     },
@@ -49,7 +52,7 @@ var JobSchema = new Schema({
     level_enhancers: {
         type: [{
             proficiency_bonus: { type: String },
-            spell_slots: { type: String },
+            spell_slots: { type: Array },
             subclasses: { type: Array },
             features: { type: Array }
         }],
