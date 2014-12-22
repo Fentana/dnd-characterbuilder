@@ -53,7 +53,6 @@ var JobSchema = new Schema({
         type: [{
             proficiency_bonus: { type: String },
             spell_slots: { type: Array },
-            subclasses: { type: Array },
             features: { type: Array }
         }],
         default: []   // title & text per element

@@ -8,6 +8,8 @@ angular.module('core').factory('SharedData', function(){
     var myAdv_Resist = ['Poison', 'Magic Sleep','Suffocation','Knock Out','Blinded','Charmed','Deafened','Frightened','Grappled','Incapacitated','Invisible','Paralyzed','Petrified','Prone','Restrained','Stunned','Unconscious'];
     var myHPBonuses = ['+1 First Level', '+1 Every Level','+2 First Level', '+2 Every Level','+3 First Level', '+3 Every Level'];
     var myAttr = [{id:'str',name:'Strength'},{id:'dex',name:'Dexterity'},{id:'con',name:'Constitution'},{id:'int',name:'Intelligence'},{id:'wis',name:'Wisdom'},{id:'cha',name:'Charisma'}];
+    var myArmor = ['leather_armor','plate_mail','scale_mail','tower_shield'];
+
 
     return {
         languages: mylangs,
@@ -17,7 +19,8 @@ angular.module('core').factory('SharedData', function(){
         skills: mySkills,
         special_hp: myHPBonuses,
         advantage_resistance_types: myAdv_Resist,
-        attributes: myAttr
+        attributes: myAttr,
+        armor: myArmor
     };
 
 });
