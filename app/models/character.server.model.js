@@ -20,7 +20,8 @@ var CharacterSchema = new Schema({
         type: String
     },
     lvl: {
-        type: Number
+        type: Number,
+        default: 1
     },
     alignment:{
         type: String
@@ -38,6 +39,9 @@ var CharacterSchema = new Schema({
     },
     job: {
         type: String  //contains short from Jobs
+    },
+    persona:{
+        type: String  //contains short from Personality
     },
 	created: {
 		type: Date,

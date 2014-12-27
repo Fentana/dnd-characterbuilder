@@ -1,10 +1,14 @@
-<section data-ng-controller="CharactersController" data-ng-init="preLoad()">
+<section data-ng-controller="CharactersController" data-ng-init="preLoad()" xmlns="http://www.w3.org/1999/html">
     <div class="page-header">
         <h1>Welcome Hero!  <small class="pull-right">Please Finalize your Character</small></h1>
     </div>
     <div class="col-md-12">
         <form class="form-horizontal" data-ng-submit="create()" novalidate>
             <fieldset>
+                <div data-ng-show="error" class="text-danger">
+                    <strong data-ng-bind="error"></strong>
+                </div>
+
                 <div class="form-group">
                     <div class="controls col-md-6">
                         <label class="control-label" for="name">Name</label>
@@ -27,40 +31,40 @@
                 <div class="form-group">
                     <div class="controls col-md-2 ">
                         <label class="control-label" for="str1">Strength</label>
-                        <input type="number" data-ng-model="attr.s" id="str1" class="form-control" min="0" max="20" />
+                        <input type="number" data-ng-model="attr_s" id="str1" class="form-control" min="0" max="20" />
                     </div>
                     <div class="controls col-md-2 ">
                         <label class="control-label" for="dex1">Dexterity</label>
-                        <input type="number" data-ng-model="attr.d" id="dex1" class="form-control" min="0" max="20"  />
+                        <input type="number" data-ng-model="attr_d" id="dex1" class="form-control" min="0" max="20"  />
                     </div>
                     <div class="controls col-md-2 ">
                         <label class="control-label" for="con1">Constitution</label>
-                        <input type="number" data-ng-model="attr.c" id="con1" class="form-control" min="0" max="20" />
+                        <input type="number" data-ng-model="attr_c" id="con1" class="form-control" min="0" max="20" />
                     </div>
                     <div class="controls col-md-2 ">
                         <label class="control-label" for="int1">Intelligence</label>
-                        <input type="number" data-ng-model="attr.i" id="int1" class="form-control" min="0" max="20" />
+                        <input type="number" data-ng-model="attr_i" id="int1" class="form-control" min="0" max="20" />
                     </div>
                     <div class="controls col-md-2 ">
                         <label class="control-label" for="wis1">Wisdom</label>
-                        <input type="number" data-ng-model="attr.w" id="wis1" class="form-control" min="0" max="20" />
+                        <input type="number" data-ng-model="attr_w" id="wis1" class="form-control" min="0" max="20" />
                     </div>
                     <div class="controls col-md-2 ">
                         <label class="control-label" for="cha1">Charisma</label>
-                        <input type="number" data-ng-model="attr.h" id="cha1" class="form-control" min="0" max="20" />
+                        <input type="number" data-ng-model="attr_h" id="cha1" class="form-control" min="0" max="20" />
                     </div>
                 </div>
 
 
                 <div class="form-group">
-                    <div class="controls col-md-4 ">
+                    <div class="controls col-md-offset-4 col-md-4 ">
                         <label class="control-label" for="pl">Personality Architype</label>
-                        <input type="text" data-ng-model="personality.name" id="pl" class="form-control" value="" readonly>
+                        <input type="text" style="text-align:center;" data-ng-model="persona" id="pl" class="form-control" value="" readonly>
                     </div>
-                    <div ng-include="modules/characters/views/partials/personality-form.client.part.html"></div>
+                    <!--<div ng-include="modules/characters/views/partials/personality-form.client.part.html"></div>-->
                 </div>
 
-                <div class="form-group">
+                <!--<div class="form-group">
                     <div class="col-md-2 col-sm-2  col-xs-2">
                         <strong>Skill Proficency:</strong></br>
                         <span data-ng-bind="personality.skills.join(', ')"></span>
@@ -70,38 +74,42 @@
                         <span data-ng-bind="personality.equipment.join(', ')"></span>
                     </div>
 
-                </div>
+                </div>-->
 
 
 
                 <div class="form-group">
+
+                    <div class="row col-md-offset-1 col-md-10"  style="background-color:#D1FFFF;">
+
                     <div class="controls col-md-2 ">
                         <label class="control-label">Pick a Race</label>
-                        <div data-ng-repeat="r in races">
-                            <input type="radio" name="race1" ng-model="race" ng-value="r" /><span>&nbsp;{{r}}</span>
+                    </div>
+                        <div class="col-md-2" data-ng-repeat="r in races">
+                            <input type="radio" name="race1" ng-model="race" ng-value="r.value" /><span>&nbsp;{{capitalizeEachWord(r.value)}}</span>
                         </div>
                     </div>
+
+                    <div class="row col-md-offset-1 col-md-10"  style="background-color:#CCFFCC; margin-top: 20px">
+
+
                     <div class="controls col-md-2 ">
                         <label class="control-label" >Pick a Class</label>
-                        <div data-ng-repeat="r in classes">
-                            <input type="radio" name="class1" ng-model="class" ng-value="r" /><span>&nbsp;{{r}}</span>
+                    </div>
+                        <div class="col-md-2" data-ng-repeat="r in classes">
+                            <input type="radio" name="class1" ng-model="class" ng-value="r.value" /><span>&nbsp;{{capitalizeEachWord(r.value)}}</span>
                         </div>
                     </div>
+
                 </div>
 
 
 
-
-            <!--    <input type="radio" name="somethign" value="1" ng-model="checkboxSelection"/> Checkbox 1
-                <input type="radio" name="somethign" value="2" ng-model="checkboxSelection"/> Checkbox 2
--->
 
                 <div class="form-group">
-                    <input type="submit" class="btn btn-default">
+                    <input type="submit" value="Create this Character!" class="btn btn-info pull-right">
                 </div>
-				<div data-ng-show="error" class="text-danger">
-					<strong data-ng-bind="error"></strong>
-				</div>
+
             </fieldset>
         </form>
     </div>
