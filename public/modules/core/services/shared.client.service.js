@@ -7,8 +7,6 @@ angular.module('core').factory('SharedData', function(){
     var mySkills=[{id:'acrobatics',name:'Acrobatics',attr:'dex'},{id:'animal_handle',name:'Animal Handling',attr:'wis'},{id:'deception',name:'Deception',attr:'cha'},{id:'arcana',name:'Arcana',attr:'int'},{id:'athletics',name:'Athletics',attr:'str'},{id:'deception',name:'Deception',attr:'cha'},{id:'history',name:'History',attr:'int'},{id:'insight',name:'Insight',attr:'wis'},{id:'intimidate',name:'Intimidation',attr:'cha'},{id:'investigation',name:'Investigation',attr:'int'},{id:'medicine',name:'Medicine',attr:'wis'},{id:'nature',name:'Nature',attr:'int'},{id:'perception',name:'Perception',attr:'wis'},{id:'performance',name:'Performance',attr:'cha'},{id:'persuasion',name:'Persuasion',attr:'cha'},{id:'religion',name:'Religion',attr:'int'},{id:'slight_of_hand',name:'Slight of Hand',attr:'dex'},{id:'stealth',name:'Stealth',attr:'dex'},{id:'survival',name:'Survival',attr:'wis'}];    var myAdv_Resist = ['Poison', 'Magic Sleep','Suffocation','Knock Out','Blinded','Charmed','Deafened','Frightened','Grappled','Incapacitated','Invisible','Paralyzed','Petrified','Prone','Restrained','Stunned','Unconscious'];
     var myHPBonuses = ['+1 First Level', '+1 Every Level','+2 First Level', '+2 Every Level','+3 First Level', '+3 Every Level'];
     var myAttr = [{id:'str',name:'Strength'},{id:'dex',name:'Dexterity'},{id:'con',name:'Constitution'},{id:'int',name:'Intelligence'},{id:'wis',name:'Wisdom'},{id:'cha',name:'Charisma'}];
-    var myArmor = ['leather_armor','plate_mail','scale_mail','tower_shield'];
-    var myWeapons = ['warhammer','longbow','longsword'];
     var myCatagoryOptions = ['race', 'class', 'alignment', 'alignment2', 'element', 'personality'];
     var myAlignments = {first:['Lawful','Neutral','Chaotic'],second:['Good','Neutral','Evil']};
     var myElements = ['fire', 'acid', 'cold', 'lightening', 'thunder', 'void'];
@@ -17,6 +15,9 @@ angular.module('core').factory('SharedData', function(){
     /**
      * SWITCH TO DB QUERY LATER ON!!!
      */
+    var myArmor = ["padded","leather","studded_leather","hide","chain_shirt","scale_mail","breastplate","half_plate","ring_mail","chain_mail","splint_plate","shield","tower_shield"];
+    var myWeapons = ["club","dagger","greatclub","handaxe","javelin","light_hammer","mace","quarterstaff","sickle","spear","unarmed_strike","light_crossbow","dart","shortbow","sling","battleaxe","flail","glaive","greataxe","greatsword","halberd","lance","longsword","maul","morningstar","pike","rapier","scimitar","shortsword","trident","war_pick","warhammer","whip","blowgun","hand_crossbow","heavy_crossbow","longbow","net"];
+
     var myRaces = ["human", "hill_dwarf", "mountain_dwarf", "high_elf", "wood_elf", "drow", "lightfoot_halfling", "stout_halfling", "dragonborn", "forest_gnome", "rock_gnome", "half_elf", "half_orc", "tiefling", "kender", "centaur", "warforged"];
     var myClasses = ["cleric","druid","fighter","barbarian","bard","monk","paladin","ranger","rouge","sorcerer","warlock","wizard"];
     var myPersona = ["criminal","acolyte","folk_hero","noble","sage","charlatan","entertainer","guild_artisan","hermit","outlander","sailor","soldier","urchin"];

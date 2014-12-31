@@ -1,48 +1,67 @@
-<section data-ng-controller="QuestionsController" data-ng-init="findUserCurrent()">
-    <div class="page-header col-md-8 col-md-offset-2 col-sm-6 col-sm-offset-3 col-xs-12">
+<style type="text/css">
+.custom_questionare_btn {
+    width:100%;
+    white-space: normal;
+    padding: 2px;
+    -moz-box-shadow:inset 0px 0px 6px 4px #cae3fc;
+    -webkit-box-shadow:inset 0px 0px 6px 4px #cae3fc;
+    box-shadow:inset 0px 0px 6px 4px #cae3fc;
+    background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #79bbff), color-stop(1, #4197ee) );
+    background:-moz-linear-gradient( center top, #79bbff 5%, #4197ee 100% );
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#79bbff', endColorstr='#4197ee');
+    background-color:#79bbff;
+    -webkit-border-top-left-radius:5px;
+    -moz-border-radius-topleft:5px;
+    border-top-left-radius:5px;
+    -webkit-border-top-right-radius:5px;
+    -moz-border-radius-topright:5px;
+    border-top-right-radius:5px;
+    -webkit-border-bottom-right-radius:5px;
+    -moz-border-radius-bottomright:5px;
+    border-bottom-right-radius:5px;
+    -webkit-border-bottom-left-radius:5px;
+    -moz-border-radius-bottomleft:5px;
+    border-bottom-left-radius:5px;
+    text-indent:0;
+    border:1px solid #469df5;
+    display:inline-block;
+    color:#ffffff;
+    font-family:Arial;
+    font-size:14px;
+    font-weight:bold;
+    font-style:normal;
+    min-height:100px;
+    line-height:25px;
+    text-decoration:none;
+    text-align:center;
+    text-shadow:1px 2px 0px #287ace;
+}
+.custom_questionare_btn:hover {
+    background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #4197ee), color-stop(1, #79bbff) );
+    background:-moz-linear-gradient( center top, #4197ee 5%, #79bbff 100% );
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#4197ee', endColorstr='#79bbff');
+    background-color:#4197ee;
+}.custom_questionare_btn:active {
+     position:relative;
+     top:1px;
+ }
+</style>
 
-        <div class="col-md-offset-1" data-ng-show="question.support_image !== null">
+<section data-ng-controller="QuestionsController" data-ng-init="findUserCurrent()">
+    <div class="page-header col-md-10 col-md-offset-1 col-sm-6 col-sm-offset-3 col-xs-12">
+
+        <div data-ng-show="question.support_image !== null">
             <img alt="thisQuestion Image" class="img-responsive text-center" data-ng-src="{{question.support_image}}"/>
-            <!--style="width: 50px; height: 60px" />-->
         </div>
         <h1 class="text-center" data-ng-bind="question.text"></h1>
-
+                                  </br>
         <form class="form-horizontal" data-ng-submit="myAnswers()" novalidate>
 
-            <div ng-switch="question.answers.length">
-
                 <div ng-repeat="ans in question.answers track by $index">
-                    <div ng-switch-when="2" class="col-md-5" >
-                        {{ans}}
-
-                        <input class="btn btn-info" type="submit" ng-click="choose($index)" value="{{ans.text}}"/>
-                    </div>
-                    <div ng-switch-when="3" class="col-md-4" >
-                        <input class="btn btn-info" type="submit" ng-click="choose($index)" value="{{ans.text}}"/>
-                    </div>
-                    <div ng-switch-when="4" class="col-md-2" >
-                        <input class="btn btn-info" type="submit" ng-click="choose($index)" value="{{ans.text}}"/>
+                    <div class="col-md-{{12/question.answers.length}}" >
+                        <input class="custom_questionare_btn" type="submit" ng-click="choose($index)" value="{{ans.text}}"/>
                     </div>
                 </div>
-
-
-            </div>
-
-            <!--
-            <div bn-switch-default ng-repeat="ans in question.answers track by $index">
-                    <div class="col-md-1" >
-                        <input class="btn btn-info" type="submit" ng-click="choose($index)" value="{{ans.text}}"/>
-                    </div>
-                </div>
-
-
-            <div ng-repeat="ans in question.answers track by $index">
-                 <div class="col-md-1" >
-                     <input class="btn btn-info" type="submit" ng-click="choose($index)" value="{{ans.text}}"/>
-                 </div>
-             </div>
-                 -->
-
 
         </form>
 

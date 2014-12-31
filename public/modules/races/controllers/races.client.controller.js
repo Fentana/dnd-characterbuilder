@@ -116,7 +116,9 @@ angular.module('races').controller('RacesController', ['$scope', '$stateParams',
                 $scope.act_on_array = SharedData.tools;
             }
             else if(t === 'equipment_proficiency'){
-                $scope.act_on_array = SharedData.equipment;
+                var equipPlusArmor = SharedData.equipment.concat(SharedData.armor);
+                var equipPlusArmorPlusWeapon = equipPlusArmor.concat(SharedData.weapon);
+                $scope.act_on_array = equipPlusArmorPlusWeapon;
             }
             else if(t === 'skill'){
                 var tmpSkill=[];

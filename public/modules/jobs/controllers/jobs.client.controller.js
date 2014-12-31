@@ -113,7 +113,8 @@ angular.module('jobs').controller('JobsController', ['$scope', '$stateParams', '
             }
             else if(t === 'equipment_proficiency'){
                 var equipPlusArmor = SharedData.equipment.concat(SharedData.armor);
-                $scope.act_on_array = equipPlusArmor;
+                var equipPlusArmorPlusWeapon = equipPlusArmor.concat(SharedData.weapon);
+                $scope.act_on_array = equipPlusArmorPlusWeapon;
             }
             else if(t === 'skill'){
                 var tmpSkill=[];
