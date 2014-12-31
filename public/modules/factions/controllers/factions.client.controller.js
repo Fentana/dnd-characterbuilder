@@ -8,20 +8,26 @@ angular.module('factions').controller('FactionsController', ['$scope', '$statePa
         $scope.preLoad = function(){
             $scope.pick_images = FactionImages.query();
             $scope.color1 = '#FFFFFF';
+            $scope.color2 = '#87CEFA';
 
             var canvas = document.getElementById("myCanvas");
             $scope.context = canvas.getContext('2d');
             $scope.attitudes = [];
+            $scope.join_requirements = [];
+            $scope.banner_icon ='';
 
         };
 
-        $scope.choose_image = function(str){
+        $scope.choose_image = function(){
             var img = new Image();
-            img.src = 'modules/factions/img/'+str;
+            img.src = 'modules/factions/img/'+$scope.banner_icon;
 
-            console.log($scope.color1);
-            $scope.context.fillStyle = $scope.color1;
+            $scope.context.fillStyle = $scope.color2;
             $scope.context.fillRect( 0, 0, 250, 380 );
+
+            $scope.context.fillStyle = $scope.color1;
+            $scope.context.fillRect( 0, 0, 125, 190 );
+            $scope.context.fillRect( 125, 190, 125, 190 );
 
             img.onload = function(){
                 //incluyo la imagen en el canvas
@@ -30,18 +36,28 @@ angular.module('factions').controller('FactionsController', ['$scope', '$statePa
         };
 
 
-        $scope.choose_color = function(){
-
-        }
-
-            //context.fillStyle = hex;
-        //context.fillRect( 0, 0, 250, 380 );
-
         $scope.add_attitude = function(){
             $scope.attitudes.push( {title:$scope.new_descriptor_title, desc:$scope.new_descriptor_text} );
             $scope.new_descriptor_title = '';
             $scope.new_descriptor_text = '';
         };
+
+        $scope.remove_attitude = function(i){
+            if (null === i){ console.log(i); }
+            else { $scope.attitudes.splice(i,1); }
+        };
+
+        $scope.add_requirement = function(){
+            $scope.join_requirements.push( {title:$scope.new_descriptor_title2, desc:$scope.new_descriptor_text2} );
+            $scope.new_descriptor_title2 = '';
+            $scope.new_descriptor_text2 = '';
+        };
+
+        $scope.remove_req = function(i){
+            if (null === i){ console.log(i); }
+            else { $scope.join_requirements.splice(i,1); }
+        };
+
 
 		// Create new Faction
 		$scope.create = function() {
