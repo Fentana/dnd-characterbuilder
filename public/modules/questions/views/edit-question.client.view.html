@@ -34,8 +34,13 @@
                     <div class="form-group form-inline" >
                         <label class="control-label" for="imp_c_{{$index+1}}">Append an Impact to Answer #{{$index+1}}:</label>
                         <div class="controls  col-md-offset-1">
-                            <input type="text" data-ng-model="imp.category" id="imp_c_{{$index+1}}" ng-blur="update_impact(imp)" class="form-control" placeholder="Category" >
-                            <input type="text" data-ng-model="imp.value" id="imp_v_{{$index+1}}" ng-blur="update_impact(imp)" class="form-control" placeholder="Value" >
+                            <!--<input type="text" data-ng-model="imp.category" id="imp_c_{{$index+1}}" ng-blur="update_impact(imp)" class="form-control" placeholder="Category" >-->
+                            <select id="imp_c_{{$index+1}}" ng-model="imp.category" ng-options="my_action for my_action in catagories"
+                                    ng-change="catagory_change(imp.category)" required></select>
+
+                            <!--<input type="text" data-ng-model="imp.value" id="imp_v_{{$index+1}}" ng-blur="update_impact(imp)" class="form-control" placeholder="Value" >-->
+                            <select id="imp_v_{{$index+1}}" ng-model="imp.value" ng-options="my_action for my_action in act_on_array"
+                                    required></select>
                             <input type="text" data-ng-model="imp.weight" id="imp_w_{{$index+1}}" ng-blur="update_impact(imp)" class="form-control" placeholder="Weight" >
                         </div>
 

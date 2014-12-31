@@ -9,6 +9,17 @@ angular.module('core').factory('SharedData', function(){
     var myAttr = [{id:'str',name:'Strength'},{id:'dex',name:'Dexterity'},{id:'con',name:'Constitution'},{id:'int',name:'Intelligence'},{id:'wis',name:'Wisdom'},{id:'cha',name:'Charisma'}];
     var myArmor = ['leather_armor','plate_mail','scale_mail','tower_shield'];
     var myWeapons = ['warhammer','longbow','longsword'];
+    var myCatagoryOptions = ['race', 'class', 'alignment', 'alignment2', 'element', 'personality'];
+    var myAlignments = {first:['Lawful','Neutral','Chaotic'],second:['Good','Neutral','Evil']};
+    var myElements = ['fire', 'acid', 'cold', 'lightening', 'thunder', 'void'];
+
+
+    /**
+     * SWITCH TO DB QUERY LATER ON!!!
+     */
+    var myRaces = ["human", "hill_dwarf", "mountain_dwarf", "high_elf", "wood_elf", "drow", "lightfoot_halfling", "stout_halfling", "dragonborn", "forest_gnome", "rock_gnome", "half_elf", "half_orc", "tiefling", "kender", "centaur", "warforged"];
+    var myClasses = ["cleric","druid","fighter","barbarian","bard","monk","paladin","ranger","rouge","sorcerer","warlock","wizard"];
+    var myPersona = ["criminal","acolyte","folk_hero","noble","sage","charlatan","entertainer","guild_artisan","hermit","outlander","sailor","soldier","urchin"];
 
     return {
         languages: mylangs,
@@ -20,7 +31,13 @@ angular.module('core').factory('SharedData', function(){
         advantage_resistance_types: myAdv_Resist,
         attributes: myAttr,
         armor: myArmor,
-        weapon: myWeapons
+        weapon: myWeapons,
+        wieght_catagories: myCatagoryOptions,
+        alignments: myAlignments,
+        possible_races: myRaces,
+        possible_classes: myClasses,
+        possible_personalities: myPersona,
+        elements: myElements
     };
 
 });

@@ -7,17 +7,40 @@ angular.module('factions').controller('FactionsController', ['$scope', '$statePa
 
         $scope.preLoad = function(){
             $scope.pick_images = FactionImages.query();
-            var canvas = document.getElementById("myCanvas");
-            var context = canvas.getContext('2d');
+            $scope.color1 = '#FFFFFF';
 
-            /*angular.element(document).ready(function () {
-                var selEle = document.getElementById('colorselector_1');
-                console.log('color',selEle);
-                 selEle.colorselector();
-            });
-            var selEle = document.getElementById('colorselector_1');
-            console.log('color',selEle);
-            selEle.colorselector();  */
+            var canvas = document.getElementById("myCanvas");
+            $scope.context = canvas.getContext('2d');
+            $scope.attitudes = [];
+
+        };
+
+        $scope.choose_image = function(str){
+            var img = new Image();
+            img.src = 'modules/factions/img/'+str;
+
+            console.log($scope.color1);
+            $scope.context.fillStyle = $scope.color1;
+            $scope.context.fillRect( 0, 0, 250, 380 );
+
+            img.onload = function(){
+                //incluyo la imagen en el canvas
+                $scope.context.drawImage(img, 25, 55);
+            }
+        };
+
+
+        $scope.choose_color = function(){
+
+        }
+
+            //context.fillStyle = hex;
+        //context.fillRect( 0, 0, 250, 380 );
+
+        $scope.add_attitude = function(){
+            $scope.attitudes.push( {title:$scope.new_descriptor_title, desc:$scope.new_descriptor_text} );
+            $scope.new_descriptor_title = '';
+            $scope.new_descriptor_text = '';
         };
 
 		// Create new Faction

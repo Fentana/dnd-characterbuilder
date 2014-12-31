@@ -27,9 +27,9 @@
 
 
 
-                    <div class="controls col-md-3">
-                        <label class="control-label" for="img1">Icon: </label>
-                        <select id="img1" ng-model="banner_icon" ng-options="img for img in pick_images" required></select>
+                    <div class="controls col-md-4">
+                        <label class="control-label" for="img1">Pick an Icon: </label>
+                        <select id="img1" ng-model="banner_icon" ng-change="choose_image(banner_icon)" ng-options="img for img in pick_images" required></select>
 
                     </div>
 
@@ -38,31 +38,92 @@
 
                         <label class="control-label" for="colorselector_1">Left: </label>
 
-                        <select id="colorselector_1">
-                        <option value="106" data-color="#A0522D">sienna</option>
-                        <option value="47" data-color="#CD5C5C" selected="selected">indianred</option>
-                        <option value="87" data-color="#FF4500">orangered</option>
-                        <option value="17" data-color="#008B8B">darkcyan</option>
-                        <option value="18" data-color="#B8860B">darkgoldenrod</option>
-                        <option value="68" data-color="#32CD32">limegreen</option>
-                        <option value="42" data-color="#FFD700">gold</option>
-                        <option value="77" data-color="#48D1CC">mediumturquoise</option>
-                        <option value="107" data-color="#87CEEB">skyblue</option>
-                        <option value="46" data-color="#FF69B4">hotpink</option>
-                        <option value="47" data-color="#CD5C5C">indianred</option>
-                        <option value="64" data-color="#87CEFA">lightskyblue</option>
-                        <option value="13" data-color="#6495ED">cornflowerblue</option>
-                        <option value="15" data-color="#DC143C">crimson</option>
-                        <option value="24" data-color="#FF8C00">darkorange</option>
-                        <option value="78" data-color="#C71585">mediumvioletred</option>
-                        <option value="123" data-color="#000000">black</option>
-                    </select>
+                        <select id="colorselector_1" ng-model="color1" ng-change="choose_color(color1,'L')">
+                            <option value="#FFFFFF" data-color="#FFFFFF">White</option>
+                            <option value="#A0522D" data-color="#A0522D">Sienna</option>
+                            <option value="#CD5C5C" data-color="#CD5C5C">Indian Red</option>
+                            <option value="#FF4500" data-color="#FF4500">Orange Red</option>
+                            <option value="#008B8B" data-color="#008B8B">Dark Cyan</option>
+                            <option value="#B8860B" data-color="#B8860B">Dark Goldenrod</option>
+                            <option value="#32CD32" data-color="#32CD32">Lime Green</option>
+                            <option value="#FFD700" data-color="#FFD700">Gold</option>
+                            <option value="#48D1CC" data-color="#48D1CC">Medium Turquoise</option>
+                            <option value="#87CEEB" data-color="#87CEEB">Skyblue</option>
+                            <option value="#FF69B4" data-color="#FF69B4">Hot Pink</option>
+                            <option value="#87CEFA" data-color="#87CEFA">Light Skyblue</option>
+                            <option value="#6495ED" data-color="#6495ED">Cornflower Blue</option>
+                            <option value="#DC143C" data-color="#DC143C">Crimson</option>
+                            <option value="#FF8C00" data-color="#FF8C00">Dark Orange</option>
+                            <option value="#C71585" data-color="#C71585">Medium Violet Red</option>
+                            <option value="#000000" data-color="#000000">Black</option>
+                        </select>
+                    </div>
+
+                    <div class="controls col-md-1">
+
+                        <label class="control-label" for="colorselector_1">Right: </label>
+
+                        <select id="colorselector_2" ng-model="color2" >
+                            <option value="106" data-color="#A0522D">sienna</option>
+                            <option value="47" data-color="#CD5C5C" selected="selected">indianred</option>
+                            <option value="87" data-color="#FF4500">orangered</option>
+                            <option value="17" data-color="#008B8B">darkcyan</option>
+                            <option value="18" data-color="#B8860B">darkgoldenrod</option>
+                            <option value="68" data-color="#32CD32">limegreen</option>
+                            <option value="42" data-color="#FFD700">gold</option>
+                            <option value="77" data-color="#48D1CC">mediumturquoise</option>
+                            <option value="107" data-color="#87CEEB">skyblue</option>
+                            <option value="46" data-color="#FF69B4">hotpink</option>
+                            <option value="47" data-color="#CD5C5C">indianred</option>
+                            <option value="64" data-color="#87CEFA">lightskyblue</option>
+                            <option value="13" data-color="#6495ED">cornflowerblue</option>
+                            <option value="15" data-color="#DC143C">crimson</option>
+                            <option value="24" data-color="#FF8C00">darkorange</option>
+                            <option value="78" data-color="#C71585">mediumvioletred</option>
+                            <option value="123" data-color="#000000">black</option>
+                        </select>
                     </div>
 
 
 
+
+
+                <div class="controls col-md-12">
+                    <label class="control-label" for="name">Motto</label>
+                    <div class="controls">
+                        <input type="text" data-ng-model="motto" id="motto" class="form-control" placeholder="What do we stand for?" required>
+                    </div>
                 </div>
 
+
+                    <div class="controls col-md-12">
+                        <label class="control-label" for="imgpath">Text Descriptions of Attitudes: </label>
+
+                        <table class="table table-striped">
+                            <tbody ng-repeat="txt in attitudes track by $index">
+                            <tr>
+                                <th>{{$index+1}}: {{txt.title}}</th>
+                                <td>{{txt.desc}}</td>
+                                <td><a class="btn btn-danger btn-sm" data-ng-click="remove_desc($index)">X</a></td>
+                            </tr>
+                            </tbody>
+                        </table>
+
+                        <div class="controls col-md-3">
+                            <label class="control-label" for="desc_tile">Title: </label>
+                            <input type="text" id="desc_tile" data-ng-model="new_descriptor_title"
+                                   class="form-control"/>
+                        </div>
+                        <div class="controls col-md-8">
+                            <label class="control-label" for="desc_txt">Text: </label>
+                            <input type="text" id="desc_txt" data-ng-model="new_descriptor_text" class="form-control"/>
+                        </div>
+                        <a class="btn btn-success btn-sm pull-right" style="margin-top: 25px;"
+                           data-ng-click="add_attitude()">+</a>
+                    </div>
+
+
+                </div>
 
 
                 <div class="form-group">
@@ -79,5 +140,6 @@
 
     $(function() {
         $('#colorselector_1').colorselector();
+        $('#colorselector_2').colorselector();
     });
 </script>

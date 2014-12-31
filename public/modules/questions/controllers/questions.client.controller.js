@@ -1,8 +1,8 @@
 'use strict';
 
 // Questions controller
-angular.module('questions').controller('QuestionsController', ['$scope', '$stateParams', '$location', 'Users', 'Authentication', 'Questions',
-	function($scope, $stateParams, $location, Users, Authentication, Questions ) {
+angular.module('questions').controller('QuestionsController', ['$scope', '$stateParams', '$location', 'Users', 'Authentication', 'Questions','SharedData',
+	function($scope, $stateParams, $location, Users, Authentication, Questions, SharedData ) {
 		$scope.authentication = Authentication;
 
         // If user is not signed in then redirect back home
@@ -14,6 +14,31 @@ angular.module('questions').controller('QuestionsController', ['$scope', '$state
             initArray.push( {text:'',lead_to:'',impacts:[]} );
         }
         $scope.answers = initArray;
+        $scope.catagories = SharedData.wieght_catagories;
+        $scope.act_on_array=[];
+
+        $scope.catagory_change = function(t){
+            console.log(t);
+            if(t === 'race'){
+                $scope.act_on_array = SharedData.possible_races;
+            }
+            else if(t === 'class'){
+                $scope.act_on_array = SharedData.possible_classes;
+            }
+            else if(t === 'element'){
+                $scope.act_on_array = SharedData.elements;
+            }
+            else if(t === 'alignment'){
+                $scope.act_on_array = SharedData.alignments.first;
+            }
+            else if(t === 'alignment2'){
+                $scope.act_on_array = SharedData.alignments.second;
+            }
+            else if(t === 'personality'){
+                $scope.act_on_array = SharedData.possible_personalities;
+            }
+            else{ $scope.act_on_array=[]; }
+        };
 
         $scope.update_impact = function(inn){
             if (null === inn){
