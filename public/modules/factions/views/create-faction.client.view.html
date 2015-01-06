@@ -8,6 +8,8 @@
     </div>
     <div class="col-md-12">
         <form class="form-horizontal" data-ng-submit="create()" novalidate>
+            <input type="hidden" id="image64-box" ng-model="image64" />
+
             <fieldset>
 
                 <div class="col-md-4">
@@ -84,6 +86,12 @@
                         </select>
                     </div>
 
+                    <div class="controls col-md-2">
+                        <label class="control-label" for="lang">Alignments: </label>
+                        <select class="multiselect" id="lang" data-ng-model="aligns"
+                                ng-options="item for item in possible_alignments" multiple="multiple"
+                                multiselect-dropdown></select>
+                    </div>
 
                 <div class="controls col-md-12">
                     <label class="control-label" for="name">Motto</label>
@@ -146,6 +154,50 @@
                         </div>
                         <a class="btn btn-success btn-sm pull-right" style="margin-top: 25px;"
                            data-ng-click="add_requirement()">+</a>
+                    </div>
+
+
+                </div>
+
+                <div class="form-group">
+
+                    <div class="controls col-md-12">
+                        <label class="control-label" for="imgpath">Titles & Perks: </label>
+
+                        <table class="table table-striped">
+                            <thead>
+                            <tr><th>Title</th><th>Renown</th><th>Perk</th></tr>
+                            <thead>
+                            <tbody ng-repeat="rk in ranks track by $index">
+                            <tr>
+                                <th>{{$index+1}}: {{rk.title}}</th>
+                                <td>{{rk.renown}}</td>
+                                <td>{{rk.perk}}</td>
+                                <td><a class="btn btn-danger btn-sm" data-ng-click="remove_rank($index)">X</a></td>
+                            </tr>
+                            </tbody>
+                        </table>
+
+                        <div class="controls col-md-2">
+                            <label class="control-label" for="rk_renown">Renown: </label>
+                            <input type="number" data-ng-model="rank_renown" id="rk_renown" class="form-control" min="0" max="1000"/>
+                        </div>
+
+                        <div class="controls col-md-6">
+                            <label class="control-label" for="desc_tile">Title: </label>
+                            <input type="text" id="desc_tile" data-ng-model="rank_title" class="form-control"/>
+                        </div>
+
+                        <div class="controls col-md-1">
+                        <a class="btn btn-success btn-sm pull-right" style="margin-top: 25px;"
+                           data-ng-click="add_rank()">+</a>
+                        </div>
+
+                        <div class="controls col-md-12">
+                            <label class="control-label" for="desc_txt">Perk Text: </label>
+                            <input type="text" id="desc_txt" data-ng-model="rank_text" class="form-control"/>
+                        </div>
+
                     </div>
 
 

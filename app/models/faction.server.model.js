@@ -44,7 +44,7 @@ var FactionSchema = new Schema({
 	created: {
 		type: Date,
 		default: Date.now
-	},
+	}
 });
 
 mongoose.model('Faction', FactionSchema);

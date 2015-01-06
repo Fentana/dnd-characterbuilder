@@ -13,8 +13,11 @@ angular.module('factions').controller('FactionsController', ['$scope', '$statePa
             var canvas = document.getElementById("myCanvas");
             $scope.context = canvas.getContext('2d');
             $scope.attitudes = [];
+            $scope.ranks = [];
             $scope.join_requirements = [];
             $scope.banner_icon ='';
+            $scope.image64='';
+            $scope.possible_alignments = ['Lawful','Chaotic','Neutral','Good','Evil','Any']
 
         };
 
@@ -32,6 +35,8 @@ angular.module('factions').controller('FactionsController', ['$scope', '$statePa
             img.onload = function(){
                 //incluyo la imagen en el canvas
                 $scope.context.drawImage(img, 25, 55);
+                var canvas = document.getElementById("myCanvas");
+                $scope.image64 = canvas.toDataURL();
             }
         };
 
@@ -59,11 +64,30 @@ angular.module('factions').controller('FactionsController', ['$scope', '$statePa
         };
 
 
+        $scope.add_rank = function(){
+            $scope.ranks.push( {renown:$scope.rank_renown, perk:$scope.rank_text, title:$scope.rank_title } );
+            $scope.rank_title = '';
+            $scope.rank_text = '';
+            $scope.rank_renown = 0;
+        };
+
+        $scope.remove_rank = function(i){
+            if (null === i){ console.log(i); }
+            else { $scope.ranks.splice(i,1); }
+        };
+
+
 		// Create new Faction
 		$scope.create = function() {
 			// Create new Faction object
 			var faction = new Factions ({
-				name: this.name
+				name: this.name,
+                banner_image: this.image64,
+                motto: this.motto,
+                alignments: this.aligns,
+                join_requirements: this.join_require$scope.image64ments,
+                attitudes: this.attitudes,
+                ranks: this.ranks
 			});
 
 			// Redirect after save

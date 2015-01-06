@@ -1,6 +1,6 @@
 angular.module('core').factory('SharedData', function(){
     'use strict';
-    var mylangs = ['Common','Dwarvish','Elvish','Giant','Gnomish','Goblin','Halfling','Orc','Abyssal','Celestial','Draconic','Druidic','Deep Speech','Infernal','Primordial','Sylvan','Undercommon'];
+    var mylangs = ['Common','Dwarvish','Elvish','Giant','Gnomish','Goblin','Halfling','Orc','Abyssal','Celestial','Draconic','Druidic','Deep Speech','Infernal','Primordial','Sylvan','Undercommon','+1 Any'];
     var myActions = ['text_only','spell_bonus','tool_proficiency','hp_bonus','equipment_proficiency','skill','special_save','conditions_types'];
     var myTools = ['smith_tools','brewing_supplies','masonary_tools','artisan_tools','disguise_kit','forgery_kit','gaming_set','herbalism_kit','musical_instrument','navigators_tools','poisoners_kit','thieves_tools'];
     var myEquip = ['shield','light_armor','medium_armor','heavy_armor'];

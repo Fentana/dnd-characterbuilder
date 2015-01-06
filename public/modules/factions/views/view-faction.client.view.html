@@ -1,7 +1,9 @@
 <section data-ng-controller="FactionsController" data-ng-init="findOne()">
 	<div class="page-header">
-		<h1 data-ng-bind="faction.name"></h1>
-	</div>
+        <a class="btn btn-primary pull-right" href="/#!/factions/{{faction._id}}/edit">Edit {{faction.name}}</a>
+        <h1 data-ng-bind="faction.name"></h1>
+        <em>"{{faction.motto}}"</em>
+    </div>
 	<div class="pull-right" data-ng-show="((authentication.user) && (authentication.user._id == faction.user._id))">
 		<a class="btn btn-primary" href="/#!/factions/{{faction._id}}/edit">
 			<i class="glyphicon glyphicon-edit"></i>
@@ -10,12 +12,66 @@
 			<i class="glyphicon glyphicon-trash"></i>
 		</a>
 	</div>
-	<small>
-		<em class="text-muted">
-			Posted on
+
+    <div class="row">
+        <div class="col-md-8">
+
+            <h2>Requirements to Join <em>{{faction.name}}</em></h2>
+            <table class="table table-striped">
+                <tbody ng-repeat="txt in faction.join_requirements">
+                <tr>
+                    <th>{{txt.title}}</th>
+                    <td>{{txt.desc}}</td>
+                </tr>
+                </tbody>
+            </table>
+            </br>
+
+
+            <div data-ng-show="faction.alignments.length >= 1">
+                <h3>Required Aligmnent(s) to Join</h3>
+                <p>{{faction.alignments}}</p>
+                </br>
+            </div>
+
+            <h2>Positions Available</h2>
+            <table class="table table-striped">
+                <thead>
+                <tr><th>Title</th><th>Renown</th><th>Perk</th></tr>
+                <thead>
+                <tbody ng-repeat="rk in faction.ranks track by $index | orderBy:'rk.renown' ">
+                <tr>
+                    <th>{{$index+1}}: {{rk.title}}</th>
+                    <td>{{rk.renown}}</td>
+                    <td>{{rk.perk}}</td>
+                </tr>
+                </tbody>
+            </table>
+            </br>
+
+            <h2>Guild Descriptions &amp; Attitudes</h2>
+            <table class="table table-striped">
+                <tbody ng-repeat="txt in faction.attitudes">
+                <tr>
+                    <th>{{txt.title}}</th>
+                    <td>{{txt.desc}}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+
+        <div class="col-md-4">
+            <img style="border: 4px outset #E6E6E6" alt="Embedded Image" src="{{faction.banner_image}}" />
+        </div>
+
+    </div>
+
+
+    <small>
+		<em class="text-muted pull-right">
+			Created on
 			<span data-ng-bind="faction.created | date:'mediumDate'"></span>
-			by
-			<span data-ng-bind="faction.user.displayName"></span>
 		</em>
 	</small>
 </section>

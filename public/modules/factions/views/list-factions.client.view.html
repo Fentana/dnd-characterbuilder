@@ -1,16 +1,25 @@
 <section data-ng-controller="FactionsController" data-ng-init="find()">
     <div class="page-header">
+        <a class="btn btn-primary pull-right" href="/#!/factions/create">Create New Faction</a>
         <h1>Factions</h1>
     </div>
     <div class="list-group">
         <a data-ng-repeat="faction in factions" data-ng-href="#!/factions/{{faction._id}}" class="list-group-item">
-			<small class="list-group-item-text">
-				Posted on
-				<span data-ng-bind="faction.created | date:'medium'"></span>
-				by
-				<span data-ng-bind="faction.user.displayName"></span>
-			</small>
-			<h4 class="list-group-item-heading" data-ng-bind="faction.name"></h4>
+            <div class="row">
+                <div class="col-md-1 col-sm-2">
+                    <img alt="thisBanner" class="img-responsive text-center" src="{{faction.banner_image}}"
+                         style="width: 50px; height: 60px" />
+                </div>
+                <div class="col-md-2  col-sm-4 ">
+                    <h4 class="list-group-item-heading" data-ng-bind="faction.name"></h4>
+                    <small class="list-group-item-text">
+                        <strong>Alignments:</strong>
+                        <span data-ng-bind="faction.alignments"></span>
+                    </small>
+                </div>
+
+            </div>
+
         </a>
     </div>
     <div class="alert alert-warning text-center" data-ng-hide="!factions.$resolved || factions.length">
