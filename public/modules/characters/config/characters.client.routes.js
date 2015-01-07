@@ -17,9 +17,9 @@ angular.module('characters').config(['$stateProvider',
 			url: '/characters/:characterId',
 			templateUrl: 'modules/characters/views/view-character.client.view.html'
 		}).
-        state('createCharacterStepTwo', {
-            url: '/characters/create02/:characterId',
-            templateUrl: 'modules/characters/views/create-character-02.client.view.html'
+        state('editCharacter', {
+            url: '/characters/edit/:characterId',
+            templateUrl: 'modules/characters/views/edit-character.client.view.html'
         });
         // ** Characters are final, cannot be edited ** //
 	}

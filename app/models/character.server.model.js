@@ -27,12 +27,12 @@ var CharacterSchema = new Schema({
         type: String
     },
     attributes: {
-        str: { type: Number },
-        dex: { type: Number },
-        con: { type: Number },
-        int: { type: Number },
-        wis: { type: Number },
-        cha: { type: Number }
+        str: { type: Number, default: 8 },
+        dex: { type: Number, default: 8 },
+        con: { type: Number, default: 8 },
+        int: { type: Number, default: 8 },
+        wis: { type: Number, default: 8 },
+        cha: { type: Number, default: 8 }
     },
     race: {
         type: String  //contains short from Races
@@ -42,6 +42,11 @@ var CharacterSchema = new Schema({
     },
     persona:{
         type: String  //contains short from Personality
+    },
+    owner: {
+        type: Schema.ObjectId,
+        ref: 'User',
+        defualt: null
     },
 	created: {
 		type: Date,

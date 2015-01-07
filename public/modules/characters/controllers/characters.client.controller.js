@@ -7,9 +7,9 @@ angular.module('characters').controller('CharactersController', ['$scope', '$sta
         $scope.languages = SharedData.languages;
 
         $scope.rolling = function(){
-            var attrIds=['str1','dex1','con1','int1','wis1','cha1'];
-            for(var e in attrIds){
-                document.getElementById(attrIds[e]).value=8+Math.floor( Math.random()*8 ) ;
+            for(var e in  $scope.attr){
+                //document.getElementById(attrIds[e]).value=8+Math.floor( Math.random()*8 ) ;
+                $scope.attr[e]=8+Math.floor( Math.random()*8 ) ;
             }
             if(typeof $scope.name === 'undefined'){
                 $scope.name = 'Ermahgerd!';
@@ -27,7 +27,7 @@ angular.module('characters').controller('CharactersController', ['$scope', '$sta
         $scope.preLoad = function(){
             $scope.gender = bubbleUpOne('gender').toUpperCase();
             $scope.alignment = bubbleUpOne('alignment').toUpperCase()+' '+bubbleUpOne('alignment2').toUpperCase();
-            $scope.attr = {s:8,d:8,c:8,i:8,w:8,h:8};
+            $scope.attr = {str:8,dex:8,con:8,int:8,wis:8,cha:8};
             $scope.races = bubbleUpMany('race',3); //['Human','Dwarf'];
             $scope.classes = bubbleUpMany('class',3); //['Cleric','Rouge'];
             $scope.persona = bubbleUpOne('personality').toUpperCase();
@@ -37,26 +37,20 @@ angular.module('characters').controller('CharactersController', ['$scope', '$sta
 		// Create new Character
 		$scope.create = function() {
 			// Create new Character object
-            var attrs = {
-                str: this.attr_s, dex: this.attr_d, con: this.attr_c,
-                int: this.attr_i, wis: this.attr_w, cha: this.attr_h
-            };
 			var character = new Characters ({
 				name: this.name,
                 gender: this.gender,
-                alignment: this.alignment,
-                attributes: attrs,
+                alignment: this.alignment.toLowerCase(),
+                attributes: this.attr,
                 race: this.race,
                 job: this.class,
-                persona: this.persona
+                persona: this.persona,
+                owner: $scope.authentication.user._id
             });
 
 			// Redirect after save
 			character.$save(function(response) {
-				$location.path('characters/create02/' + response._id);
-
-				// Clear form fields
-				$scope.name = '';
+				$location.path('characters/edit/' + response._id);
 			}, function(errorResponse) {
 				$scope.error = errorResponse.data.message;
 			});
@@ -65,12 +59,10 @@ angular.module('characters').controller('CharactersController', ['$scope', '$sta
         $scope.preload02 = function() {
             $scope.character = Characters.get({
                 characterId: $stateParams.characterId
-            }, console.log($scope.character.persona));
-
+            });
             $scope.personality = PersonalFull.get({
                 personalShort: $scope.character.persona
             });
-            console.log($scope.personality);
         };
 
         // Update existing Character

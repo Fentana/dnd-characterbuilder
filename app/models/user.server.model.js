@@ -82,11 +82,6 @@ var UserSchema = new Schema({
         default: '546d1e1a8ead44a170abb256'   // THIS IS THE STARTING QUESTION!!!
         // Have a function in Questions, to update this attr, for all users.
     },
-    character: {
-        type: Schema.ObjectId,
-        ref: 'Character',
-        defualt: null
-    },
     chosen_impacts: [   //when you being taking the quiz, this will populate with all choices (merge? or just append?)
         {
             category: { type: String },
