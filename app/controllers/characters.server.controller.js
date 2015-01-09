@@ -7,6 +7,7 @@ var mongoose = require('mongoose'),
 	errorHandler = require('./errors'),
     Character = mongoose.model('Character'),
     Personality = mongoose.model('Personality'),
+    Race = mongoose.model('Race'),
 	_ = require('lodash');
 
 /**
@@ -102,14 +103,25 @@ exports.characterByID = function(req, res, next, id) { Character.findById(id).po
 exports.read_P = function(req, res) {
     res.jsonp(req.personality);
 };
+exports.read_R = function(req, res) {
+    res.jsonp(req.race);
+};
 
 /**
  * Character middleware
  */
 exports.personalityByShort = function(req, res, next, qy) { Personality.findOne({ short : qy }).exec(function(err, personality) {
     if (err) return next(err);
-    if (! personality) return next(new Error('Failed to load personality ' + qy));
+    if (! personality) return next(new Error('Bad Query: Failed to load personality ' + qy));
     req.personality = personality ;
+    next();
+});
+};
+
+exports.raceByShort = function(req, res, next, qy) { Race.findOne({ short : qy }).exec(function(err, race) {
+    if (err) return next(err);
+    if (! race) return next(new Error('Bad Query: Failed to load race ' + qy));
+    req.race = race ;
     next();
 });
 };

@@ -16,9 +16,11 @@ module.exports = function(app) {
 
     app.route('/charactersPersonality/:personalShort')
         .get(characters.read_P);
-
+    app.route('/charactersRace/:raceShort')
+        .get(characters.read_R);
 
 	// Finish by binding the Character middleware
     app.param('characterId', characters.characterByID);
     app.param('personalShort', characters.personalityByShort);
+    app.param('raceShort', characters.raceByShort);
 };

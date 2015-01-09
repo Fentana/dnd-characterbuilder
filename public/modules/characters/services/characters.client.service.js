@@ -17,3 +17,10 @@ angular.module('characters').factory('PersonalFull', ['$resource',
         return $resource('/charactersPersonality/:personalShort', { personalShort: '@short'});
     }
 ]);
+
+
+angular.module('characters').factory('RaceFull', ['$resource',
+    function($resource) {
+        return $resource('/charactersPersonality/:personalShort', { personalShort: '@short'});
+    }
+]);

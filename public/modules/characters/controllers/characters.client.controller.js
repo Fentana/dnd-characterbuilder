@@ -56,13 +56,21 @@ angular.module('characters').controller('CharactersController', ['$scope', '$sta
 			});
 		};
 
-        $scope.preload02 = function() {
-            $scope.character = Characters.get({
+
+        $scope.preload02 = function () {
+            Characters.get({
                 characterId: $stateParams.characterId
-            });
-            $scope.personality = PersonalFull.get({
-                personalShort: $scope.character.persona
-            });
+            }).$promise.then(function (char) {
+                    //console.log('character', char);
+                    $scope.character = char;
+                    $scope.personality = PersonalFull.get({
+                        personalShort: char.persona.toLowerCase()
+                    });
+                });
+        };
+
+        $scope.getMod = function(x){
+            return Math.floor( (x - 10) / 2 );
         };
 
         // Update existing Character
@@ -167,6 +175,12 @@ angular.module('characters').controller('CharactersController', ['$scope', '$sta
             if(a.value > b.value)
                 return 1;
             return 0;
+        }
+
+        function getCharacter(cid){
+            return Characters.get({
+                characterId: cid
+            });
         }
 
 	}
