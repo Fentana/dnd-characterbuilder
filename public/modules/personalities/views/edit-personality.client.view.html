@@ -4,19 +4,134 @@
     </div>
     <div class="col-md-12">
         <form class="form-horizontal" data-ng-submit="update()" novalidate>
+            <div data-ng-show="error" class="text-danger">
+                <strong data-ng-bind="error"></strong>
+            </div>
             <fieldset>
                 <div class="form-group">
-                    <label class="control-label" for="name">Name</label>
-                    <div class="controls">
-                        <input type="text" data-ng-model="personality.name" id="name" class="form-control" placeholder="Name" required>
+                    <div class="controls col-md-5">
+                        <label class="control-label" for="al">Short Id: </label>
+                        <input type="text" data-ng-model="personality.short" id="al" class="form-control" readonly>
+                    </div>
+
+                    <div class="controls col-md-5">
+                        <label class="control-label" for="name">Name: </label>
+                        <input type="text" data-ng-model="personality.name" id="name" class="form-control"
+                               placeholder="Name"
+                               required>
                     </div>
                 </div>
                 <div class="form-group">
-                    <input type="submit" value="Update" class="btn btn-default">
+                    <div class="controls col-md-12">
+                        <label class="control-label">Text Descriptions: </label>
+
+                        <table class="table table-striped">
+                            <tbody ng-repeat="txt in personality.descriptors track by $index">
+                            <tr>
+                                <td>{{txt}}</td>
+                                <td><a class="btn btn-danger btn-sm" data-ng-click="remove_desc($index)">X</a></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <div class="controls col-md-11">
+                            <label class="control-label" for="desc_txt">Text: </label>
+                            <input type="text" id="desc_txt" data-ng-model="new_descriptor_text" class="form-control"/>
+                        </div>
+                        <a class="btn btn-success btn-sm pull-right" style="margin-top: 25px;"
+                           data-ng-click="add_desc()">+</a>
+                    </div>
                 </div>
-				<div data-ng-show="error" class="text-danger">
-					<strong data-ng-bind="error"></strong>
-				</div>
+                <div class="form-group">
+                    <div class="controls col-md-12">
+                        <label class="control-label">Personality Feature: </label></br>
+                        <textarea data-ng-model="personality.feature" id="al" class="form-control"> </textarea>
+                    </div>
+                </div>
+
+                <div class="form-group">
+
+                    <div class="controls col-md-2">
+                        <label class="control-label" for="act_on">&nbsp; Skills : </label>
+                        <select class="multiselect" id="act_on" data-ng-model="personality.skills"
+                                ng-options="my.id as my.name for my in skills" multiple="multiple"
+                                multiselect-dropdown></select>
+
+                    </div>
+
+                    <div class="controls col-md-2 col-md-offset-1">
+                        <label class="control-label" for="act_on2"> Tools : </label>
+                        <select class="multiselect" id="act_on2" data-ng-model="personality.tools"
+                                ng-options="my for my in tools" multiple="multiple"
+                                multiselect-dropdown></select>
+
+                    </div>
+
+                    <div class="controls col-md-7">
+                        <label class="control-label">Other Equipment: </label>
+
+                        <table class="table table-striped">
+                            <tbody ng-repeat="txt in personality.equipment track by $index">
+                            <tr>
+                                <td>{{txt}}</td>
+                                <td><a class="btn btn-danger btn-sm" data-ng-click="remove_desc($index)">X</a></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <div class="controls col-md-11">
+                            <input type="text" id="desc_txt" data-ng-model="new_other_equip" class="form-control"/>
+                        </div>
+                        <a class="btn btn-success btn-sm pull-right" style="margin-top: 5px;"
+                           data-ng-click="add_desc()">+</a>
+                    </div>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <div class="controls col-md-5">
+                        <label class="control-label">traits: </label>
+
+                        <table class="table table-striped">
+                            <tbody ng-repeat="txt in personality.traits track by $index">
+                            <tr>
+                                <td>{{txt}}</td>
+                                <td><a class="btn btn-danger btn-sm" data-ng-click="remove_desc($index)">X</a></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <div class="controls col-md-11">
+                            <input type="text" id="desc_txt" data-ng-model="new_other_equip" class="form-control"/>
+                        </div>
+                        <a class="btn btn-success btn-sm pull-right" style="margin-top: 5px;"
+                           data-ng-click="add_desc()">+</a>
+
+                        <div class="controls col-md-6">
+                            <label class="control-label">ideals: </label>
+
+                            <table class="table table-striped">
+                                <tbody ng-repeat="txt in personality.ideals track by $index">
+                                <tr>
+                                    <td>{{txt}}</td>
+                                    <td><a class="btn btn-danger btn-sm" data-ng-click="remove_desc($index)">X</a></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <div class="controls col-md-11">
+                                <input type="text" id="desc_txt" data-ng-model="new_other_equip" class="form-control"/>
+                            </div>
+                            <a class="btn btn-success btn-sm pull-right" style="margin-top: 5px;"
+                               data-ng-click="add_desc()">+</a>
+                        </div>
+
+                    </div>
+                </div>
+
+
+                    <div class="form-group">
+                        <input type="submit" value="Update" class="btn btn-default">
+                    </div>
+
             </fieldset>
         </form>
     </div>

@@ -1,7 +1,8 @@
 <section data-ng-controller="PersonalitiesController" data-ng-init="findOne()">
 	<div class="page-header">
+        <a class="btn btn-primary pull-right" href="/#!/personalities/{{personality._id}}/edit">Edit {{personality.name}}</a>
 		<h1 data-ng-bind="personality.name"></h1>
-	</div>
+    </div>
 	<div class="pull-right" data-ng-show="authentication.user._id == personality.user._id">
 		<a class="btn btn-primary" href="/#!/personalities/{{personality._id}}/edit">
 			<i class="glyphicon glyphicon-edit"></i>

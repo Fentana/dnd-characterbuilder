@@ -15,7 +15,7 @@ var mongoose = require('mongoose'),
  */
 exports.create = function(req, res) {
 	var character = new Character(req.body);
-	character.user = req.user;
+	character.owner = req.user;
 
 	character.save(function(err) {
 		if (err) {
@@ -136,3 +136,11 @@ exports.hasAuthorization = function(req, res, next) {
 	}*/
 	next();
 };
+
+
+var getRace = function(r) {
+    return Race.findOne({ short : r }).exec(function(err, race) {
+        if (err) return next(err);
+        return race
+    });
+}

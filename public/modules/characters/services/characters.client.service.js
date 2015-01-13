@@ -21,6 +21,6 @@ angular.module('characters').factory('PersonalFull', ['$resource',
 
 angular.module('characters').factory('RaceFull', ['$resource',
     function($resource) {
-        return $resource('/charactersPersonality/:personalShort', { personalShort: '@short'});
+        return $resource('/charactersRace/:raceShort', { raceShort: '@short'});
     }
 ]);

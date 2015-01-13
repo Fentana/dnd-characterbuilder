@@ -15,12 +15,12 @@ angular.module('core').factory('SharedData', function(){
     /**
      * SWITCH TO DB QUERY LATER ON!!!
      */
-    var myArmor = ["padded","leather","studded_leather","hide","chain_shirt","scale_mail","breastplate","half_plate","ring_mail","chain_mail","splint_plate","shield","tower_shield"];
-    var myWeapons = ["club","dagger","greatclub","handaxe","javelin","light_hammer","mace","quarterstaff","sickle","spear","unarmed_strike","light_crossbow","dart","shortbow","sling","battleaxe","flail","glaive","greataxe","greatsword","halberd","lance","longsword","maul","morningstar","pike","rapier","scimitar","shortsword","trident","war_pick","warhammer","whip","blowgun","hand_crossbow","heavy_crossbow","longbow","net"];
+    var myArmor = ['padded','leather','studded_leather','hide','chain_shirt','scale_mail','breastplate','half_plate','ring_mail','chain_mail','splint_plate','shield','tower_shield'];
+    var myWeapons = ['club','dagger','greatclub','handaxe','javelin','light_hammer','mace','quarterstaff','sickle','spear','unarmed_strike','light_crossbow','dart','shortbow','sling','battleaxe','flail','glaive','greataxe','greatsword','halberd','lance','longsword','maul','morningstar','pike','rapier','scimitar','shortsword','trident','war_pick','warhammer','whip','blowgun','hand_crossbow','heavy_crossbow','longbow','net'];
 
-    var myRaces = ["human", "hill_dwarf", "mountain_dwarf", "high_elf", "wood_elf", "drow", "lightfoot_halfling", "stout_halfling", "dragonborn", "forest_gnome", "rock_gnome", "half_elf", "half_orc", "tiefling", "kender", "centaur", "warforged"];
-    var myClasses = ["cleric","druid","fighter","barbarian","bard","monk","paladin","ranger","rouge","sorcerer","warlock","wizard"];
-    var myPersona = ["criminal","acolyte","folk_hero","noble","sage","charlatan","entertainer","guild_artisan","hermit","outlander","sailor","soldier","urchin"];
+    var myRaces = ['human', 'hill_dwarf', 'mountain_dwarf', 'high_elf', 'wood_elf', 'drow', 'lightfoot_halfling', 'stout_halfling', 'dragonborn', 'forest_gnome', 'rock_gnome', 'half_elf', 'half_orc', 'tiefling', 'kender', 'centaur', 'warforged'];
+    var myClasses = ['cleric','druid','fighter','barbarian','bard','monk','paladin','ranger','rouge','sorcerer','warlock','wizard'];
+    var myPersona = ['criminal','acolyte','folk_hero','noble','sage','charlatan','entertainer','guild_artisan','hermit','outlander','sailor','soldier','urchin'];
 
     return {
         languages: mylangs,

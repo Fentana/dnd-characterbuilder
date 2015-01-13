@@ -43,6 +43,9 @@ var CharacterSchema = new Schema({
     persona:{
         type: String  //contains short from Personality
     },
+    firstEdit:{
+        default: false
+    },
     owner: {
         type: Schema.ObjectId,
         ref: 'User',

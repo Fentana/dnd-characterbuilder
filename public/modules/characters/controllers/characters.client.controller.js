@@ -1,10 +1,11 @@
 'use strict';
 
 // Characters controller
-angular.module('characters').controller('CharactersController', ['$scope', '$stateParams', '$location', 'Authentication', 'Characters', 'PersonalFull', 'SharedData',
-	function($scope, $stateParams, $location, Authentication, Characters, PersonalFull, SharedData ) {
+angular.module('characters').controller('CharactersController', ['$scope', '$stateParams', '$location', 'Authentication', 'Characters', 'PersonalFull','RaceFull','SharedData',
+	function($scope, $stateParams, $location, Authentication, Characters, PersonalFull,RaceFull,SharedData ) {
 		$scope.authentication = Authentication;
         $scope.languages = SharedData.languages;
+        $scope.fullNamesAttr={'str':'Strength','dex':'Dexterity','con':'Constitution','int':'Intelligence','wis':'Wisdom','cha':'Charisma'}
 
         $scope.rolling = function(){
             for(var e in  $scope.attr){
@@ -44,8 +45,7 @@ angular.module('characters').controller('CharactersController', ['$scope', '$sta
                 attributes: this.attr,
                 race: this.race,
                 job: this.class,
-                persona: this.persona,
-                owner: $scope.authentication.user._id
+                persona: this.persona
             });
 
 			// Redirect after save
@@ -65,6 +65,9 @@ angular.module('characters').controller('CharactersController', ['$scope', '$sta
                     $scope.character = char;
                     $scope.personality = PersonalFull.get({
                         personalShort: char.persona.toLowerCase()
+                    });
+                    $scope.race = RaceFull.get({
+                        raceShort: char.race.toLowerCase()
                     });
                 });
         };

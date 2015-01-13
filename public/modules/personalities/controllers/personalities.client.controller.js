@@ -1,8 +1,8 @@
 'use strict';
 
 // Personalities controller
-angular.module('personalities').controller('PersonalitiesController', ['$scope', '$stateParams', '$location', 'Authentication', 'Personalities',
-	function($scope, $stateParams, $location, Authentication, Personalities ) {
+angular.module('personalities').controller('PersonalitiesController', ['$scope', '$stateParams', '$location', 'Authentication', 'Personalities', 'SharedData',
+	function($scope, $stateParams, $location, Authentication, Personalities, SharedData ) {
 		$scope.authentication = Authentication;
 
 		// Create new Personality
@@ -57,6 +57,9 @@ angular.module('personalities').controller('PersonalitiesController', ['$scope',
 
 		// Find existing Personality
 		$scope.findOne = function() {
+            $scope.skills = SharedData.skills;
+            $scope.tools = SharedData.tools;
+
 			$scope.personality = Personalities.get({ 
 				personalityId: $stateParams.personalityId
 			});
