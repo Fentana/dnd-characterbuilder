@@ -1,8 +1,8 @@
 'use strict';
 
 // Characters controller
-angular.module('characters').controller('CharactersController', ['$scope', '$stateParams', '$location', 'Authentication', 'Characters', 'PersonalFull','RaceFull','SharedData',
-	function($scope, $stateParams, $location, Authentication, Characters, PersonalFull,RaceFull,SharedData ) {
+angular.module('characters').controller('CharactersController', ['$scope', '$stateParams', '$location', 'Authentication', 'Characters', 'PersonalFull','RaceFull','JobFull','SharedData',
+	function($scope, $stateParams, $location, Authentication, Characters, PersonalFull,RaceFull,JobFull,SharedData ) {
 		$scope.authentication = Authentication;
         $scope.languages = SharedData.languages;
         $scope.fullNamesAttr={'str':'Strength','dex':'Dexterity','con':'Constitution','int':'Intelligence','wis':'Wisdom','cha':'Charisma'}
@@ -68,6 +68,9 @@ angular.module('characters').controller('CharactersController', ['$scope', '$sta
                     });
                     $scope.race = RaceFull.get({
                         raceShort: char.race.toLowerCase()
+                    });
+                    $scope.job = JobFull.get({
+                        jobShort: char.job.toLowerCase()
                     });
                 });
         };

@@ -8,6 +8,7 @@ var mongoose = require('mongoose'),
     Character = mongoose.model('Character'),
     Personality = mongoose.model('Personality'),
     Race = mongoose.model('Race'),
+    Job = mongoose.model('Job'),
 	_ = require('lodash');
 
 /**
@@ -106,6 +107,9 @@ exports.read_P = function(req, res) {
 exports.read_R = function(req, res) {
     res.jsonp(req.race);
 };
+exports.read_J = function(req, res) {
+    res.jsonp(req.job);
+};
 
 /**
  * Character middleware
@@ -126,14 +130,22 @@ exports.raceByShort = function(req, res, next, qy) { Race.findOne({ short : qy }
 });
 };
 
+exports.jobByShort = function(req, res, next, qy) { Job.findOne({ short : qy }).exec(function(err, job) {
+    if (err) return next(err);
+    if (! job) return next(new Error('Bad Query: Failed to load class ' + qy));
+    req.job = job ;
+    next();
+});
+};
+
 
 /**
  * Character authorization middleware
  */
 exports.hasAuthorization = function(req, res, next) {
-	/*if (req.character.user.id !== req.user.id) {
-		return res.status(403).send('User is not authorized');
-	}*/
+	if (req.character.owner.id !== req.user.id) {
+		return res.status(403).send('User '+req.user.username+' is not authorized');
+	}
 	next();
 };
 

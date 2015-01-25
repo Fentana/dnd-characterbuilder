@@ -24,3 +24,9 @@ angular.module('characters').factory('RaceFull', ['$resource',
         return $resource('/charactersRace/:raceShort', { raceShort: '@short'});
     }
 ]);
+
+angular.module('characters').factory('JobFull', ['$resource',
+    function($resource) {
+        return $resource('/charactersJob/:jobShort', { jobShort: '@short'});
+    }
+]);

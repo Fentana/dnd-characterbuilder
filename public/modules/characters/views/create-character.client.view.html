@@ -86,7 +86,7 @@
                         <label class="control-label">Pick a Race</label>
                     </div>
                         <div class="col-md-2" data-ng-repeat="r in races">
-                            <input type="radio" name="race1" ng-model="race" ng-value="r.value" /><span>&nbsp;{{capitalizeEachWord(r.value)}}</span>
+                            <input type="radio" name="race1" ng-model="$parent.race" ng-value="r.value" /><span>&nbsp;{{capitalizeEachWord(r.value)}}</span>
                         </div>
                     </div>
 
@@ -97,7 +97,7 @@
                         <label class="control-label" >Pick a Class</label>
                     </div>
                         <div class="col-md-2" data-ng-repeat="r in classes">
-                            <input type="radio" name="class1" ng-model="class" ng-value="r.value" /><span>&nbsp;{{capitalizeEachWord(r.value)}}</span>
+                            <input type="radio" name="class1" ng-model="$parent.class" ng-value="r.value" /><span>&nbsp;{{capitalizeEachWord(r.value)}}</span>
                         </div>
                     </div>
 

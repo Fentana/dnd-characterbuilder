@@ -42,3 +42,10 @@ angular.module('core').factory('SharedData', function(){
     };
 
 });
+
+
+angular.module('core').factory('MyCharacter', ['$resource',
+    function($resource) {
+        return $resource('/charactersJob/:jobShort', { jobShort: '@short'});
+    }
+]);

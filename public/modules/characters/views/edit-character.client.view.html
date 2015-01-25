@@ -19,7 +19,9 @@
         vertical-align: middle;
         font-size: 1.3em;
     }
-
+    .attr_text{
+        font-size: 1.5em;
+    }
 </style>
 
 <section data-ng-controller="CharactersController" data-ng-init="preload02()">
@@ -31,8 +33,8 @@
         <div class="col-md-2">
 
             <div class="fancy-border text-center" ng-repeat="att in ['str','dex','con','int','wis','cha']">
-                &nbsp;{{ fullNamesAttr[att] }}&nbsp;
-                {{character.attributes[att]}}
+                <span class="attr_text">&nbsp;{{ fullNamesAttr[att] }}&nbsp;
+                {{character.attributes[att]}}</span>
                 <p id="oval">{{ getMod(character.attributes[att]) }}</p>
             </div>
             </br>
@@ -41,7 +43,7 @@
 
         <div class="col-md-10">
             <a data-ng-href="#!/races/{{race._id}}"> <div class="col-md-3" style="background-color:#D1FFFF;"> <h4 style="display: inline-block">Race :</h4> {{race.name}} </div></a>
-            <a data-ng-href="#!/races/{{race._id}}"> <div class="col-md-3" style="background-color:#52ff6a;"> <h4 style="display: inline-block">Class :</h4> {{race.name}} </div></a>
+            <a data-ng-href="#!/jobs/{{job._id}}"> <div class="col-md-3" style="background-color:#52ff6a;"> <h4 style="display: inline-block">Class :</h4> {{job.name}} </div></a>
             <a data-ng-href="#!/personalities/{{personality._id}}"> <div class="col-md-3" style="background-color:#fffa9e;"> <h4 style="display: inline-block">Personality :</h4> {{personality.name}} </div></a>
 
 
