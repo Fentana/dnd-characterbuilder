@@ -1,4 +1,4 @@
-![alt text](https://github.com/raymond301/characterbuilder/config/homePage.png "Main Screenshot")
+![alt text](https://github.com/raymond301/characterbuilder/blob/master/config/homePage.png "Main Screenshot")
 
 ## Prerequisites
 Make sure you have installed all these prerequisites on your development machine.
@@ -50,14 +50,7 @@ Your application should run on the 3000 port so in your browser just go to [http
 That's it! your application should be running by now, to proceed with your development check the other sections in this documentation. 
 If you encounter any problem try the Troubleshooting section.
 
-```
-
-
-This file was created by IntelliJ IDEA 12.1.6 for binding GitHub repository
-
-$ cd IdeaProjects/characterbuilder/
-
-$ grunt
+## Addition Details
 
 Mean.js
 https://github.com/meanjs/generator-meanjs#express-model-sub-generator
@@ -70,16 +63,18 @@ http://mongoosejs.com/docs/schematypes.html
 
 https://www.npmjs.org/package/node-mongo-seeds   ---unfinished
 https://github.com/toymachiner62/node-mongo-seeds
+```
 mongodb://localhost:27017/<your_db_name>
 Run $ seed to seed your mongodb with all your data from your /seeds folder.
     or
 http://stackoverflow.com/questions/19441228/insert-json-file-into-mongodb
 mongoimport --db mycharacterbuilder-dev --collection personalities --file /Users/m088378/IdeaProjects/characterbuilder/seeds/personalities.json
+```
 
 **Contact Me for seed files**
 
 TODO:
-  1. have impacts merge upon each and every save
+  1. Finish Character Sheet report
   2. decide if character building should be 1-x mutliple choice forms, or 1 question at a time?
   3. add spider graph for alignment
   4. add question analysis, what is the collection of impacts for every single permustation of q&a
