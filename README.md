@@ -76,6 +76,8 @@ Run $ seed to seed your mongodb with all your data from your /seeds folder.
 http://stackoverflow.com/questions/19441228/insert-json-file-into-mongodb
 mongoimport --db mycharacterbuilder-dev --collection personalities --file /Users/m088378/IdeaProjects/characterbuilder/seeds/personalities.json
 
+**Contact Me for seed files**
+
 TODO:
   1. have impacts merge upon each and every save
   2. decide if character building should be 1-x mutliple choice forms, or 1 question at a time?
