@@ -176,6 +176,38 @@ angular.module('questions').controller('QuestionsController', ['$scope', '$state
 
         };
 
+        $scope.resultingWeights = {};
+        $scope.trackQuesionts = [];
+        $scope.determineWegights = function(j, m){
+            $scope.trackQuesionts[j]= m.impacts;
+            var collectedImpacts = [];
+            for(var ele in $scope.trackQuesionts){
+                console.log($scope.trackQuesionts[ele]);
+                collectedImpacts=mergeImpacts(collectedImpacts,$scope.trackQuesionts[ele]);
+
+            }
+            console.log(collectedImpacts);
+
+                     //need a list of catagories available....dynamic?
+            var setC = ['gender','race'];
+            var subset = collectedImpacts.filter(function(item) {
+                if(item.category === category){return item;}
+            });
+            subset.sort(compareByValue).slice(0,n);
+
+
+        }
+
+
+        function compareByValue(a,b){
+            if(a.value < b.value)
+                return -1;
+            if(a.value > b.value)
+                return 1;
+            return 0;
+        }
+
+
 
         function mergeImpacts(exsitingImps, newImps){
             if( exsitingImps.length === 0){
@@ -198,7 +230,6 @@ angular.module('questions').controller('QuestionsController', ['$scope', '$state
             }
             return exsitingImps;
         }
-
 
 	}
 ]);

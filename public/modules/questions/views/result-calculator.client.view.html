@@ -1,0 +1,20 @@
+<section data-ng-controller="QuestionsController" data-ng-init="find()">
+    <div class="page-header">
+        <h1>Weight Results Calculator</h1>
+    </div>
+    <div class="col-md-6">
+        <div data-ng-repeat="question in questions track by $index">
+            <h4 class="list-group-item-heading" data-ng-bind="question.text"></h4>
+<!--
+            <select id="ans_{{$index}}" ng-model="imp.category" ng-options="my_action for my_action in catagories"
+                    ng-change="catagory_change(imp.category)"></select>      {{question.answers}}
+-->
+            <select id="ans_{{$index}}" data-ng-model="question.answers.text" ng-change="determineWegights($index, question.answers.text)" ng-options="item.text for item in question.answers"></select>
+
+
+        </div>
+    </div>
+    <div class="alert alert-warning text-center" data-ng-hide="!questions.$resolved || questions.length">
+        No Questions to Analyze yet!
+    </div>
+</section>

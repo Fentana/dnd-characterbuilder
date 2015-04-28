@@ -1,8 +1,4 @@
-[![MEAN.JS Logo](http://meanjs.org/img/logo-small.png)](http://meanjs.org/)
-
-[![Build Status](https://travis-ci.org/meanjs/mean.svg?branch=master)](https://travis-ci.org/meanjs/mean)
-[![Dependencies Status](https://david-dm.org/meanjs/mean.svg)](https://david-dm.org/meanjs/mean)
-
+![alt text](https://github.com/raymond301/characterbuilder/config/homePage.png "Main Screenshot")
 
 ## Prerequisites
 Make sure you have installed all these prerequisites on your development machine.
@@ -56,24 +52,32 @@ If you encounter any problem try the Troubleshooting section.
 
 ```
 
-## License
-(The MIT License)
 
-Permission is hereby granted, free of charge, to any person obtaining
-a copy of this software and associated documentation files (the
-'Software'), to deal in the Software without restriction, including
-without limitation the rights to use, copy, modify, merge, publish,
-distribute, sublicense, and/or sell copies of the Software, and to
-permit persons to whom the Software is furnished to do so, subject to
-the following conditions:
+This file was created by IntelliJ IDEA 12.1.6 for binding GitHub repository
 
-The above copyright notice and this permission notice shall be
-included in all copies or substantial portions of the Software.
+$ cd IdeaProjects/characterbuilder/
 
-THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND,
-EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
-CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
-TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
-SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+$ grunt
+
+Mean.js
+https://github.com/meanjs/generator-meanjs#express-model-sub-generator
+http://meanjs.org/docs.html#getting-started
+http://scotch.io/bar-talk/setting-up-a-mean-stack-single-page-application
+
+Mongoose:
+http://mongoosejs.com/docs/schematypes.html
+
+
+https://www.npmjs.org/package/node-mongo-seeds   ---unfinished
+https://github.com/toymachiner62/node-mongo-seeds
+mongodb://localhost:27017/<your_db_name>
+Run $ seed to seed your mongodb with all your data from your /seeds folder.
+    or
+http://stackoverflow.com/questions/19441228/insert-json-file-into-mongodb
+mongoimport --db mycharacterbuilder-dev --collection personalities --file /Users/m088378/IdeaProjects/characterbuilder/seeds/personalities.json
+
+TODO:
+  1. have impacts merge upon each and every save
+  2. decide if character building should be 1-x mutliple choice forms, or 1 question at a time?
+  3. add spider graph for alignment
+  4. add question analysis, what is the collection of impacts for every single permustation of q&a
