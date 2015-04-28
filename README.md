@@ -72,6 +72,7 @@ mongoimport --db mycharacterbuilder-dev --collection personalities --file /Users
 ```
 
 **Contact Me for seed files**
+*raymond<dot>moore301<at>gmail.com*
 
 TODO:
   1. Finish Character Sheet report
